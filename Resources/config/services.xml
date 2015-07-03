@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="speicher210_cloudinary.cloudinary.class">Speicher210\CloudinaryBundle\Cloudinary\Cloudinary</parameter>
+        <parameter key="speicher210_cloudinary.api.class">Speicher210\CloudinaryBundle\Cloudinary\Api</parameter>
+        <parameter key="speicher210_cloudinary.uploader.class">Speicher210\CloudinaryBundle\Cloudinary\Uploader</parameter>
+    </parameters>
+
+    <services>
+        <service id="speicher210_cloudinary.cloudinary" class="%speicher210_cloudinary.cloudinary.class%">
+            <argument type="collection">
+                <argument key="cloud_name">%speicher210_cloudinary.cloud_name%</argument>
+                <argument key="api_key">%speicher210_cloudinary.access_identifier.api_key%</argument>
+                <argument key="api_secret">%speicher210_cloudinary.access_identifier.api_secret%</argument>
+            </argument>
+        </service>
+        <service id="speicher210_cloudinary.api" class="%speicher210_cloudinary.api.class%">
+            <argument id="speicher210_cloudinary.cloudinary" type="service"/>
+        </service>
+        <service id="speicher210_cloudinary.uploader" class="%speicher210_cloudinary.uploader.class%">
+            <argument id="speicher210_cloudinary.cloudinary" type="service"/>
+        </service>
+
+        <service id="twig.extension.cloudinary" class="Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension">
+            <argument type="service" id="speicher210_cloudinary.cloudinary"/>
+            <tag name="twig.extension"/>
+        </service>
+    </services>
+</container>
