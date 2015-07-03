@@ -13,9 +13,9 @@
     }
   ],
   "require": {
-    "php": ">=5.3.0",
-    "symfony/framework-bundle": "~2.3",
-    "symfony/console": "~2.3",
+    "php": ">=5.3.3",
+    "symfony/framework-bundle": "~2.5",
+    "symfony/console": "~2.5",
     "cloudinary/cloudinary_php": "~1.1",
     "twig/extensions": "~1.1"
   },
@@ -23,6 +23,13 @@
     "phpunit/phpunit": "~4.1"
   },
   "autoload": {
-    "psr-4": {"Speicher210\\CloudinaryBundle\\": ""}
+    "psr-4": {
+      "Speicher210\\CloudinaryBundle\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Speicher210\\CloudinaryBundle\\Tests\\": "Tests"
+    }
   }
 }

@@ -9,7 +9,7 @@ Simple bundle for Cloudinary PHP SDK library.
 Getting started
 --------
 
-This bundle requires Symfony 2.3+
+This bundle requires Symfony 2.5+
 
 Installation
 ------------
