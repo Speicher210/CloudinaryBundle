@@ -1,5 +1,5 @@
 {
-  "name": "Speicher210/CloudinaryBundle",
+  "name": "speicher210/cloudinary-bundle",
   "type": "symfony-bundle",
   "description": "Bundle for Cloudinary PHP API library",
   "keywords": ["cloudinary"],
