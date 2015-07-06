@@ -17,7 +17,7 @@ Installation
 Add [`speicher210/CloudinaryBundle`](https://packagist.org/packages/speicher210/CloudinaryBundle)
 to your `composer.json` file:
 
-    composer require "speicher210/CloudinaryBundle"
+    composer require "speicher210/cloudinary-bundle"
 
 Register the bundle in `app/AppKernel.php`:
 
