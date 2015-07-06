@@ -11,7 +11,7 @@
 Via Composer
 
 ``` bash
-$ composer require speicher210/CloudinaryBundle
+$ composer require speicher210/cloudinary-bundle
 ```
 
 ## Usage
