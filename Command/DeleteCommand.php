@@ -14,7 +14,7 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 /**
  * Command to remove resources from Cloudinary API.
  */
-class RemoveCommand extends ContainerAwareCommand
+class DeleteCommand extends ContainerAwareCommand
 {
 
     /**
@@ -24,7 +24,7 @@ class RemoveCommand extends ContainerAwareCommand
     {
         $this
             ->setName('sp210:cloudinary:delete')
-            ->setDescription('Remove resources from cloudinary based on criteria.')
+            ->setDescription('Remove resources from Cloudinary based on criteria.')
             ->addOption(
                 'prefix',
                 null,
@@ -47,7 +47,7 @@ class RemoveCommand extends ContainerAwareCommand
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion(
-            '<question>Are you sure you want to remove all resources based on your criteria?</question> '
+            '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]'
         );
         if (!$helper->ask($input, $output, $question)) {
             return;
