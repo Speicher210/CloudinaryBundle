@@ -16,7 +16,6 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
  */
 class DeleteCommand extends ContainerAwareCommand
 {
-
     /**
      * {@inheritdoc}
      */
@@ -63,9 +62,9 @@ class DeleteCommand extends ContainerAwareCommand
     }
 
     /**
-     * Remove resources by prefix
+     * Remove resources by prefix.
      *
-     * @param InputInterface $input Console input.
+     * @param InputInterface  $input  Console input.
      * @param OutputInterface $output Console output.
      */
     private function removeByPrefix(InputInterface $input, OutputInterface $output)
@@ -84,7 +83,7 @@ class DeleteCommand extends ContainerAwareCommand
     /**
      * Remove a resource.
      *
-     * @param InputInterface $input Console input.
+     * @param InputInterface  $input  Console input.
      * @param OutputInterface $output Console output.
      */
     private function removeResource(InputInterface $input, OutputInterface $output)
@@ -103,9 +102,9 @@ class DeleteCommand extends ContainerAwareCommand
     /**
      * Output the API response.
      *
-     * @param Response $response The response
-     * @param string $part The part of the response to output.
-     * @param OutputInterface $output The console output.
+     * @param Response        $response The response
+     * @param string          $part     The part of the response to output.
+     * @param OutputInterface $output   The console output.
      */
     private function outputApiResponse(Response $response, $part, OutputInterface $output)
     {

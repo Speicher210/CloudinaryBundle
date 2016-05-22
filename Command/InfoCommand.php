@@ -46,8 +46,8 @@ class InfoCommand extends ContainerAwareCommand
     /**
      * Render the general properties.
      *
-     * @param OutputInterface $output The output.
-     * @param Response $response The API response.
+     * @param OutputInterface $output   The output.
+     * @param Response        $response The API response.
      */
     protected function renderProperties(OutputInterface $output, Response $response)
     {
@@ -64,8 +64,8 @@ class InfoCommand extends ContainerAwareCommand
     /**
      * Render the derived resources.
      *
-     * @param OutputInterface $output The output.
-     * @param array $derivedResources The derived resources.
+     * @param OutputInterface $output           The output.
+     * @param array           $derivedResources The derived resources.
      */
     protected function renderDerivedResources(OutputInterface $output, array $derivedResources)
     {
@@ -73,7 +73,7 @@ class InfoCommand extends ContainerAwareCommand
         $table->setHeaders(
             array(
                 array(new TableCell('Derived resources', array('colspan' => 5))),
-                array('ID', 'Format', 'Size', 'Transformation', 'URL')
+                array('ID', 'Format', 'Size', 'Transformation', 'URL'),
             )
         );
         foreach ($derivedResources as $resource) {
@@ -83,7 +83,7 @@ class InfoCommand extends ContainerAwareCommand
                     $resource['format'],
                     $this->formatSize($resource['bytes']),
                     $resource['transformation'],
-                    $resource['url']
+                    $resource['url'],
                 )
             );
         }
@@ -93,7 +93,7 @@ class InfoCommand extends ContainerAwareCommand
     /**
      * Format the size of a file.
      *
-     * @param integer $bytes The number of bytes.
+     * @param int $bytes The number of bytes.
      *
      * @return string
      */
@@ -101,12 +101,12 @@ class InfoCommand extends ContainerAwareCommand
     {
         $unit = 1024;
         if ($bytes <= $unit) {
-            return $bytes . " b";
+            return $bytes.' b';
         }
         $exp = intval((log($bytes) / log($unit)));
-        $pre = "kMGTPE";
+        $pre = 'kMGTPE';
         $pre = $pre[$exp - 1];
 
-        return sprintf("%.1f %sB", $bytes / pow($unit, $exp), $pre);
+        return sprintf('%.1f %sB', $bytes / pow($unit, $exp), $pre);
     }
 }

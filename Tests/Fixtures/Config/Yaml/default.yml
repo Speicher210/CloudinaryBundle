@@ -1,0 +1,5 @@
+speicher210_cloudinary:
+    cloud_name: name
+    access_identifier:
+        api_key: key
+        api_secret: secret
