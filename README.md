@@ -35,7 +35,11 @@ If you discover any security related issues, please email instead of using the i
 ## Credits
 
 - [Dragos Protung](https://github.com/dragosprotung)
+- [All contributors][link-contributors]
 
 ## License
 
 The MIT License (MIT). Please see [License File](Resources/meta/LICENSE) for more information.
+
+
+[link-contributors]: ../../contributors
