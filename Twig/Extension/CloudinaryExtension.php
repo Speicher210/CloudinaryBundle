@@ -9,13 +9,10 @@ use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
  */
 class CloudinaryExtension extends \Twig_Extension
 {
-
     /**
-     * The cloudinary library.
-     *
      * @var Cloudinary
      */
-    protected $cloudinary;
+    private $cloudinary;
 
     /**
      * Constructor.
@@ -28,42 +25,48 @@ class CloudinaryExtension extends \Twig_Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('cloudinary_url', array($this, 'getUrl'))
+            new \Twig_SimpleFunction('cloudinary_url', array($this, 'getUrl')),
+            new \Twig_SimpleFunction('cloudinary_image_tag', array($this, 'getImageTag'), array('is_safe' => array('html'))),
         );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('cloudinary_url', array($this, 'getUrl'))
+            new \Twig_SimpleFilter('cloudinary_url', array($this, 'getUrl')),
+            new \Twig_SimpleFilter('cloudinary_image_tag', array($this, 'getImageTag'), array('is_safe' => array('html'))),
         );
     }
 
     /**
      * Get the cloudinary URL.
      *
-     * @param string $id Image ID.
-     * @param array $options options for the image.
+     * @param string $id      Image ID.
+     * @param array  $options options for the image.
+     *
      * @return string
      */
     public function getUrl($id, $options = array())
     {
-        return $this->cloudinary->cloudinary_url($id, $options);
+        $cloudinary = $this->cloudinary;
+
+        return $cloudinary::cloudinary_url($id, $options);
     }
 
     /**
      * Get the cloudinary image tag.
      *
-     * @param string $id Image ID.
-     * @param array $options options for the image.
+     * @param string $id      Image ID.
+     * @param array  $options options for the image.
+     *
      * @return string
      */
     public function getImageTag($id, $options = array())
@@ -72,7 +75,7 @@ class CloudinaryExtension extends \Twig_Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

@@ -72,8 +72,9 @@ class UploadCommand extends ContainerAwareCommand
     /**
      * Upload a picture to Cloudinary.
      *
-     * @param SplFileInfo $file The file to upload.
-     * @param string $publicId Path where to upload in Cloudinary.
+     * @param SplFileInfo $file     The file to upload.
+     * @param string      $publicId Path where to upload in Cloudinary.
+     *
      * @return array
      */
     protected function uploadFileToCloudinary($file, $publicId)
