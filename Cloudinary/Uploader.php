@@ -7,4 +7,10 @@ namespace Speicher210\CloudinaryBundle\Cloudinary;
  */
 class Uploader extends \Cloudinary\Uploader
 {
+    /**
+     * @param Cloudinary $cloudinary
+     */
+    public function __construct(Cloudinary $cloudinary)
+    {
+    }
 }
