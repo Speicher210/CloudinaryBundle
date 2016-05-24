@@ -7,4 +7,10 @@ namespace Speicher210\CloudinaryBundle\Cloudinary;
  */
 class Api extends \Cloudinary\Api
 {
+    /**
+     * @param Cloudinary $cloudinary
+     */
+    public function __construct(Cloudinary $cloudinary)
+    {
+    }
 }
