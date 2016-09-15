@@ -20,19 +20,27 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('url')
+                    ->info('Any parameter value parsed from this string will override explicitly set parameters.')
+                    ->validate()
+                        ->ifTrue(
+                            function ($url) {
+                                $url = parse_url($url);
+                                return $url === false || !array_key_exists('scheme', $url);
+                            }
+                        )
+                        ->thenInvalid('Cloudinary URL must be in the form: cloudinary://api_key:api_secret@cloud_name')
+                    ->end()
+                ->end()
                 ->scalarNode('cloud_name')
-                    ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
                 ->arrayNode('access_identifier')
-                    ->isRequired()
                     ->children()
                         ->scalarNode('api_key')
-                            ->isRequired()
                             ->cannotBeEmpty()
                         ->end()
                         ->scalarNode('api_secret')
-                            ->isRequired()
                             ->cannotBeEmpty()
                         ->end()
                     ->end()

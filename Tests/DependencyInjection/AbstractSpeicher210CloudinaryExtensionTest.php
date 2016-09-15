@@ -25,10 +25,21 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
     /**
      * Loads a configuration.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container     The container.
-     * @param string                                                  $configuration The configuration.
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
+     * @param string $configuration The configuration.
      */
     abstract protected function loadConfiguration(ContainerBuilder $container, $configuration);
+
+    public function testURLConfigurationOverwritesParameters()
+    {
+        $this->loadConfiguration($this->container, 'with_url');
+        $this->container->compile();
+
+        // Need to trigger a load.
+        $this->container->get('speicher210_cloudinary.cloudinary');
+
+        $this->assertDefaultConfig();
+    }
 
     public function testCloudinaryService()
     {
@@ -37,8 +48,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $cloudinary = $this->container->get('speicher210_cloudinary.cloudinary');
 
-        $this->assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Cloudinary', $cloudinary);
-        $this->assertInstanceOf('Cloudinary', $cloudinary);
+        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Cloudinary', $cloudinary);
+        static::assertInstanceOf('Cloudinary', $cloudinary);
 
         $this->assertDefaultConfig();
     }
@@ -50,8 +61,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $api = $this->container->get('speicher210_cloudinary.api');
 
-        $this->assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Api', $api);
-        $this->assertInstanceOf('Cloudinary\Api', $api);
+        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Api', $api);
+        static::assertInstanceOf('Cloudinary\Api', $api);
 
         $this->assertDefaultConfig();
     }
@@ -63,8 +74,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $uploader = $this->container->get('speicher210_cloudinary.uploader');
 
-        $this->assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Uploader', $uploader);
-        $this->assertInstanceOf('Cloudinary\Uploader', $uploader);
+        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Uploader', $uploader);
+        static::assertInstanceOf('Cloudinary\Uploader', $uploader);
 
         $this->assertDefaultConfig();
     }
@@ -76,12 +87,12 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $service = 'twig.extension.cloudinary';
 
-        $this->assertInstanceOf(
+        static::assertInstanceOf(
             'Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension',
             $this->container->get($service)
         );
 
-        $this->assertTrue($this->container->getDefinition($service)->hasTag('twig.extension'));
+        static::assertTrue($this->container->getDefinition($service)->hasTag('twig.extension'));
         $this->assertDefaultConfig();
     }
 
@@ -90,10 +101,13 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
      */
     private function assertDefaultConfig()
     {
-        $this->assertSame(array(
-            'cloud_name' => 'name',
-            'api_key' => 'key',
-            'api_secret' => 'secret',
-        ), \Cloudinary::config());
+        static::assertSame(
+            array(
+                'cloud_name' => 'name',
+                'api_key' => 'key',
+                'api_secret' => 'secret',
+            ),
+            \Cloudinary::config()
+        );
     }
 }

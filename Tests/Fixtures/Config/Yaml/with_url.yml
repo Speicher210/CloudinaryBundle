@@ -1,0 +1,6 @@
+speicher210_cloudinary:
+    url: cloudinary://key:secret@name
+    cloud_name: to_overwrite_cloud
+    access_identifier:
+        api_key: to_overwrite_key
+        api_secret: to_overwrite_secret

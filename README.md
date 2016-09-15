@@ -21,10 +21,10 @@ Please see [USAGE](Resources/doc/usage.md) for details.
 ## Testing
 
 ``` bash
-$ phpunit
+$ vendor/bin/phpunit
 ```
 
-## Contributing
+## Contributings
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 

@@ -1,5 +1,5 @@
 Speicher210 CloudinaryBundle
-==============================
+============================
 
 Overview
 --------
@@ -7,7 +7,7 @@ Overview
 Simple bundle for Cloudinary PHP SDK library.
 
 Getting started
---------
+---------------
 
 This bundle requires Symfony 2.5+
 
@@ -38,6 +38,9 @@ Configure the connection to cloudinary in your `config.yml` :
 
 ``` yaml
 speicher210_cloudinary:
+    url: cloudinary://my-key:my-secret@my-cloud
+    # The next configuration variables should be defined if they are not present in the URL
+    # The URL will take precedence
     cloud_name: my-cloud
     access_identifier:
         api_key: my-key
@@ -45,7 +48,7 @@ speicher210_cloudinary:
 ```
 
 Usage
----------------------
+-----
 
 The following services will be available:
 
@@ -58,7 +61,7 @@ $this->get('speicher210_cloudinary.uploader'); // Extension of Cloudinary\Upload
 ```
 
 Usage in twig
----------------------
+-------------
 
 You can pass the same options to the twig filter:
 
