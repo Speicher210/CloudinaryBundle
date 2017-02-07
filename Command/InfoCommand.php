@@ -103,7 +103,7 @@ class InfoCommand extends ContainerAwareCommand
         if ($bytes <= $unit) {
             return $bytes.' b';
         }
-        $exp = intval((log($bytes) / log($unit)));
+        $exp = (int)(log($bytes) / log($unit));
         $pre = 'kMGTPE';
         $pre = $pre[$exp - 1];
 
