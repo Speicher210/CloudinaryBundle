@@ -29,10 +29,10 @@ class CloudinaryExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('cloudinary_url', array($this, 'getUrl')),
-            new \Twig_SimpleFunction('cloudinary_image_tag', array($this, 'getImageTag'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('cloudinary_url', [$this, 'getUrl']),
+            new \Twig_SimpleFunction('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
@@ -40,21 +40,21 @@ class CloudinaryExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('cloudinary_url', array($this, 'getUrl')),
-            new \Twig_SimpleFilter('cloudinary_image_tag', array($this, 'getImageTag'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFilter('cloudinary_url', [$this, 'getUrl']),
+            new \Twig_SimpleFilter('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
      * Get the cloudinary URL.
      *
-     * @param string $id      Image ID.
-     * @param array  $options options for the image.
+     * @param string $id Image ID.
+     * @param array $options options for the image.
      *
      * @return string
      */
-    public function getUrl($id, $options = array())
+    public function getUrl($id, $options = [])
     {
         $cloudinary = $this->cloudinary;
 
@@ -64,12 +64,12 @@ class CloudinaryExtension extends \Twig_Extension
     /**
      * Get the cloudinary image tag.
      *
-     * @param string $id      Image ID.
-     * @param array  $options options for the image.
+     * @param string $id Image ID.
+     * @param array $options options for the image.
      *
      * @return string
      */
-    public function getImageTag($id, $options = array())
+    public function getImageTag($id, $options = [])
     {
         return cl_image_tag($id, $options);
     }

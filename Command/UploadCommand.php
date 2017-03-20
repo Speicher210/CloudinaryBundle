@@ -81,9 +81,9 @@ class UploadCommand extends ContainerAwareCommand
     {
         $result = $this->uploader->upload(
             $file->getRealPath(),
-            array(
+            [
                 'public_id' => $publicId,
-            )
+            ]
         );
 
         return $result;

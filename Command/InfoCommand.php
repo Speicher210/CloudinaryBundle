@@ -52,10 +52,10 @@ class InfoCommand extends ContainerAwareCommand
     protected function renderProperties(OutputInterface $output, Response $response)
     {
         $table = new Table($output);
-        $table->setHeaders(array('Property', 'Value'));
+        $table->setHeaders(['Property', 'Value']);
         foreach ($response as $property => $value) {
             if (is_scalar($value)) {
-                $table->addRow(array($property, $value));
+                $table->addRow([$property, $value]);
             }
         }
         $table->render();
@@ -71,20 +71,20 @@ class InfoCommand extends ContainerAwareCommand
     {
         $table = new Table($output);
         $table->setHeaders(
-            array(
-                array(new TableCell('Derived resources', array('colspan' => 5))),
-                array('ID', 'Format', 'Size', 'Transformation', 'URL'),
-            )
+            [
+                [new TableCell('Derived resources', ['colspan' => 5])],
+                ['ID', 'Format', 'Size', 'Transformation', 'URL'],
+            ]
         );
         foreach ($derivedResources as $resource) {
             $table->addRow(
-                array(
+                [
                     $resource['id'],
                     $resource['format'],
                     $this->formatSize($resource['bytes']),
                     $resource['transformation'],
                     $resource['url'],
-                )
+                ]
             );
         }
         $table->render();

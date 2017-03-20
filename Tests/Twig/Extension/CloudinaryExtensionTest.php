@@ -28,7 +28,7 @@ class CloudinaryExtensionTest extends TestCase
      */
     protected function setUp()
     {
-        $this->cloudinary = new Cloudinary(array('cloud_name' => 'test'));
+        $this->cloudinary = new Cloudinary(['cloud_name' => 'test']);
         $this->extension = new CloudinaryExtension($this->cloudinary);
 
         $this->twig = new \Twig_Environment(new \Twig_Loader_Filesystem());
@@ -41,7 +41,7 @@ class CloudinaryExtensionTest extends TestCase
 
         $this->assertSame(
             'http://res.cloudinary.com/test/image/upload/id',
-            $template->render(array('url' => 'id'))
+            $template->render(['url' => 'id'])
         );
     }
 
@@ -51,7 +51,7 @@ class CloudinaryExtensionTest extends TestCase
 
         $this->assertSame(
             'http://res.cloudinary.com/test/image/upload/id',
-            $template->render(array('url' => 'id'))
+            $template->render(['url' => 'id'])
         );
     }
 
@@ -61,7 +61,7 @@ class CloudinaryExtensionTest extends TestCase
 
         $this->assertSame(
             '<img src=\'http://res.cloudinary.com/test/image/upload/id\' />',
-            $template->render(array('url' => 'id'))
+            $template->render(['url' => 'id'])
         );
     }
 
@@ -71,7 +71,7 @@ class CloudinaryExtensionTest extends TestCase
 
         $this->assertSame(
             '<img src=\'http://res.cloudinary.com/test/image/upload/id\' />',
-            $template->render(array('url' => 'id'))
+            $template->render(['url' => 'id'])
         );
     }
 }

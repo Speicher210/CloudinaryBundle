@@ -107,11 +107,11 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
     private function assertDefaultConfig()
     {
         static::assertSame(
-            array(
+            [
                 'cloud_name' => 'name',
                 'api_key' => 'key',
                 'api_secret' => 'secret',
-            ),
+            ],
             \Cloudinary::config()
         );
     }

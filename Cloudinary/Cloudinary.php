@@ -8,8 +8,6 @@ namespace Speicher210\CloudinaryBundle\Cloudinary;
 class Cloudinary extends \Cloudinary
 {
     /**
-     * Constructor.
-     *
      * @param array $config The cloudinary configurations.
      */
     public function __construct(array $config)

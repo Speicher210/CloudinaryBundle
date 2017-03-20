@@ -109,9 +109,9 @@ class DeleteCommand extends ContainerAwareCommand
     private function outputApiResponse(Response $response, $part, OutputInterface $output)
     {
         $table = new Table($output);
-        $table->setHeaders(array('Resource', 'Status'));
+        $table->setHeaders(['Resource', 'Status']);
         foreach ($response[$part] as $file => $status) {
-            $table->addRow(array($file, $status));
+            $table->addRow([$file, $status]);
         }
 
         $table->render();

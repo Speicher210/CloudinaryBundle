@@ -24,7 +24,7 @@ class RemoveTwigExtensionPassTest extends TestCase
     protected function setUp()
     {
         $this->container = $this->getMockBuilder(ContainerBuilder::class)
-            ->setMethods(array('hasDefinition', 'removeDefinition'))
+            ->setMethods(['hasDefinition', 'removeDefinition'])
             ->getMock();
 
         $this->compilerPass = new RemoveTwigExtensionPass();
