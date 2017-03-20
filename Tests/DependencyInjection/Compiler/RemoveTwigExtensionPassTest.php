@@ -2,10 +2,11 @@
 
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection\Compiler;
 
+use PHPUnit\Framework\TestCase;
 use Speicher210\CloudinaryBundle\DependencyInjection\Compiler\RemoveTwigExtensionPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class RemoveTwigExtensionPassTest extends \PHPUnit_Framework_TestCase
+class RemoveTwigExtensionPassTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|ContainerBuilder
@@ -22,7 +23,7 @@ class RemoveTwigExtensionPassTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
+        $this->container = $this->getMockBuilder(ContainerBuilder::class)
             ->setMethods(array('hasDefinition', 'removeDefinition'))
             ->getMock();
 

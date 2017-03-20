@@ -2,10 +2,11 @@
 
 namespace Speicher210\CloudinaryBundle\Tests\Twig\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 use Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension;
 
-class CloudinaryExtensionTest extends \PHPUnit_Framework_TestCase
+class CloudinaryExtensionTest extends TestCase
 {
     /**
      * @var \Twig_Environment

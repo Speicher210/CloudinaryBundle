@@ -2,10 +2,15 @@
 
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Speicher210\CloudinaryBundle\DependencyInjection\Speicher210CloudinaryExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
+use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
+use Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension;
 
-abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
 {
     /**
      * @var ContainerBuilder
@@ -48,8 +53,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $cloudinary = $this->container->get('speicher210_cloudinary.cloudinary');
 
-        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Cloudinary', $cloudinary);
-        static::assertInstanceOf('Cloudinary', $cloudinary);
+        static::assertInstanceOf(Cloudinary::class, $cloudinary);
+        static::assertInstanceOf(\Cloudinary::class, $cloudinary);
 
         $this->assertDefaultConfig();
     }
@@ -61,8 +66,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $api = $this->container->get('speicher210_cloudinary.api');
 
-        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Api', $api);
-        static::assertInstanceOf('Cloudinary\Api', $api);
+        static::assertInstanceOf(Api::class, $api);
+        static::assertInstanceOf(\Cloudinary\Api::class, $api);
 
         $this->assertDefaultConfig();
     }
@@ -74,8 +79,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
 
         $uploader = $this->container->get('speicher210_cloudinary.uploader');
 
-        static::assertInstanceOf('Speicher210\CloudinaryBundle\Cloudinary\Uploader', $uploader);
-        static::assertInstanceOf('Cloudinary\Uploader', $uploader);
+        static::assertInstanceOf(Uploader::class, $uploader);
+        static::assertInstanceOf(\Cloudinary\Uploader::class, $uploader);
 
         $this->assertDefaultConfig();
     }
@@ -88,7 +93,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends \PHPUnit_Frame
         $service = 'twig.extension.cloudinary';
 
         static::assertInstanceOf(
-            'Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension',
+            CloudinaryExtension::class,
             $this->container->get($service)
         );
 
