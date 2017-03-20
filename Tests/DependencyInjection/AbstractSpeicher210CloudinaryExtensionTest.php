@@ -3,12 +3,12 @@
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
-use Speicher210\CloudinaryBundle\DependencyInjection\Speicher210CloudinaryExtension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
+use Speicher210\CloudinaryBundle\DependencyInjection\Speicher210CloudinaryExtension;
 use Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
 {
