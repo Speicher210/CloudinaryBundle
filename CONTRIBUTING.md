@@ -22,11 +22,4 @@ We accept contributions via Pull Requests on [Github](https://github.com/Speiche
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
 
 
-## Running Tests
-
-``` bash
-$ phpunit
-```
-
-
 **Happy coding**!

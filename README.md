@@ -8,21 +8,55 @@
 
 ## Install
 
-Via Composer
+Add [`speicher210/cloudinary-bundle`](https://packagist.org/packages/speicher210/CloudinaryBundle) to your `composer.json` file:
 
-``` bash
-$ composer require speicher210/cloudinary-bundle
+    composer require "speicher210/cloudinary-bundle"
+
+Register the bundle in `app/AppKernel.php`:
+
+``` php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Speicher210\CloudinaryBundle\Speicher210CloudinaryBundle(),
+        // ...
+    );
+}
 ```
 
 ## Usage
 
-Please see [USAGE](Resources/doc/usage.md) for details.
+Configure the connection to cloudinary in your `config.yml` :
 
-## Testing
-
-``` bash
-$ vendor/bin/phpunit
+``` yaml
+speicher210_cloudinary:
+    url: cloudinary://my-key:my-secret@my-cloud
+    # The next configuration variables should be defined if they are not present in the URL
+    # The URL will take precedence
+    cloud_name: my-cloud
+    access_identifier:
+        api_key: my-key
+        api_secret: my-secret
 ```
+
+The following services will be available:
+
+``` php
+$this->get('speicher210_cloudinary.cloudinary'); // Extension of Cloudinary from cloudinary package.
+
+$this->get('speicher210_cloudinary.api'); // Extension of Cloudinary\Api from cloudinary package.
+
+$this->get('speicher210_cloudinary.uploader'); // Extension of Cloudinary\Uploader from cloudinary package.
+```
+
+You can pass the same options to the twig filter:
+
+``` twig
+{{ cloudinary-image-id | cloudinary_url({'width': 50, 'height': 50, 'crop': 'fill'}) }}
+```
+
+For further documentation see [Cloudinary PHP library](https://github.com/cloudinary/cloudinary_php)
 
 ## Contributings
 
