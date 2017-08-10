@@ -23,7 +23,7 @@ before_install:
 
 before_script:
   - composer self-update
-  - composer install --no-interaction
+  - composer update --no-interaction
 
 script:
   - if [ "$COVERAGE" == "true" ]; then vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; else vendor/bin/phpunit; fi

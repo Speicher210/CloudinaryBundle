@@ -50,10 +50,13 @@ $this->get('speicher210_cloudinary.api'); // Extension of Cloudinary\Api from cl
 $this->get('speicher210_cloudinary.uploader'); // Extension of Cloudinary\Uploader from cloudinary package.
 ```
 
-You can pass the same options to the twig filter:
+You can pass the same options to the twig filter or function:
 
 ``` twig
-{{ cloudinary-image-id | cloudinary_url({'width': 50, 'height': 50, 'crop': 'fill'}) }}
+{{ cloudinary-public-id | cloudinary_url({'width': 50, 'height': 50, 'crop': 'fill'}) }}
+{{ cloudinary_url('cloudinary-public-id', {'width': 50, 'height': 50, 'crop': 'fill'}) }}
+{{ cloudinary_image_tag('cloudinary-public-id', {'height' : 150}) }}
+{{ cloudinary_video_tag('cloudinary-public-id', {'height' : 150}) }}
 ```
 
 For further documentation see [Cloudinary PHP library](https://github.com/cloudinary/cloudinary_php)

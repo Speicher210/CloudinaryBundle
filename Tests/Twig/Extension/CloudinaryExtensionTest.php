@@ -39,7 +39,7 @@ class CloudinaryExtensionTest extends TestCase
     {
         $template = $this->twig->createTemplate('{{ cloudinary_url(url) }}');
 
-        $this->assertSame(
+        self::assertSame(
             'http://res.cloudinary.com/test/image/upload/id',
             $template->render(['url' => 'id'])
         );
@@ -49,7 +49,7 @@ class CloudinaryExtensionTest extends TestCase
     {
         $template = $this->twig->createTemplate('{{ url | cloudinary_url }}');
 
-        $this->assertSame(
+        self::assertSame(
             'http://res.cloudinary.com/test/image/upload/id',
             $template->render(['url' => 'id'])
         );
@@ -59,7 +59,7 @@ class CloudinaryExtensionTest extends TestCase
     {
         $template = $this->twig->createTemplate('{{ cloudinary_image_tag(url) }}');
 
-        $this->assertSame(
+        self::assertSame(
             '<img src=\'http://res.cloudinary.com/test/image/upload/id\' />',
             $template->render(['url' => 'id'])
         );
@@ -69,8 +69,28 @@ class CloudinaryExtensionTest extends TestCase
     {
         $template = $this->twig->createTemplate('{{ url | cloudinary_image_tag }}');
 
-        $this->assertSame(
+        self::assertSame(
             '<img src=\'http://res.cloudinary.com/test/image/upload/id\' />',
+            $template->render(['url' => 'id'])
+        );
+    }
+
+    public function testVideoTagFunction()
+    {
+        $template = $this->twig->createTemplate('{{ cloudinary_video_tag(url) }}');
+
+        self::assertSame(
+            '<video poster=\'http://res.cloudinary.com/test/video/upload/id.jpg\'><source src=\'http://res.cloudinary.com/test/video/upload/id.webm\' type=\'video/webm\'><source src=\'http://res.cloudinary.com/test/video/upload/id.mp4\' type=\'video/mp4\'><source src=\'http://res.cloudinary.com/test/video/upload/id.ogv\' type=\'video/ogg\'></video>',
+            $template->render(['url' => 'id'])
+        );
+    }
+
+    public function testVideoTagFilter()
+    {
+        $template = $this->twig->createTemplate('{{ url | cloudinary_video_tag }}');
+
+        self::assertSame(
+            '<video poster=\'http://res.cloudinary.com/test/video/upload/id.jpg\'><source src=\'http://res.cloudinary.com/test/video/upload/id.webm\' type=\'video/webm\'><source src=\'http://res.cloudinary.com/test/video/upload/id.mp4\' type=\'video/mp4\'><source src=\'http://res.cloudinary.com/test/video/upload/id.ogv\' type=\'video/ogg\'></video>',
             $template->render(['url' => 'id'])
         );
     }
