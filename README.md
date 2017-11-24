@@ -38,6 +38,8 @@ speicher210_cloudinary:
     access_identifier:
         api_key: my-key
         api_secret: my-secret
+    options:
+        secure: true
 ```
 
 The following services will be available:
@@ -61,7 +63,7 @@ You can pass the same options to the twig filter or function:
 
 For further documentation see [Cloudinary PHP library](https://github.com/cloudinary/cloudinary_php)
 
-## Contributings
+## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
