@@ -5,21 +5,21 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="speicher210_cloudinary.cloudinary" class="Speicher210\CloudinaryBundle\Cloudinary\Cloudinary">
+        <service id="speicher210_cloudinary.cloudinary" class="Speicher210\CloudinaryBundle\Cloudinary\Cloudinary" public="true">
             <factory class="Speicher210\CloudinaryBundle\Factory\CloudinaryFactory" method="createCloudinary"/>
 
             <argument type="collection"/>
         </service>
 
-        <service id="speicher210_cloudinary.api" class="Speicher210\CloudinaryBundle\Cloudinary\Api">
+        <service id="speicher210_cloudinary.api" class="Speicher210\CloudinaryBundle\Cloudinary\Api" public="true">
             <argument type="service" id="speicher210_cloudinary.cloudinary"/>
         </service>
 
-        <service id="speicher210_cloudinary.uploader" class="Speicher210\CloudinaryBundle\Cloudinary\Uploader">
+        <service id="speicher210_cloudinary.uploader" class="Speicher210\CloudinaryBundle\Cloudinary\Uploader" public="true">
             <argument type="service" id="speicher210_cloudinary.cloudinary"/>
         </service>
 
-        <service id="twig.extension.cloudinary" class="Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension">
+        <service id="twig.extension.cloudinary" class="Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension" public="true">
             <argument type="service" id="speicher210_cloudinary.cloudinary"/>
             <tag name="twig.extension"/>
         </service>
