@@ -57,6 +57,7 @@ class CloudinaryExtension extends \Twig_Extension
     public function getUrl($id, $options = [])
     {
         $cloudinary = $this->cloudinary;
+        $options = array_merge($cloudinary::config(), $options);
 
         return $cloudinary::cloudinary_url($id, $options);
     }
@@ -71,6 +72,8 @@ class CloudinaryExtension extends \Twig_Extension
      */
     public function getImageTag($id, $options = [])
     {
+        $options = array_merge($this->cloudinary::config(), $options);
+
         return cl_image_tag($id, $options);
     }
 
@@ -84,6 +87,8 @@ class CloudinaryExtension extends \Twig_Extension
      */
     public function getVideoTag($id, $options = [])
     {
+        $options = array_merge($this->cloudinary::config(), $options);
+
         return cl_video_tag($id, $options);
     }
 
