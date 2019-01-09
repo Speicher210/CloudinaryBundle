@@ -56,10 +56,9 @@ class CloudinaryExtension extends \Twig_Extension
      */
     public function getUrl($id, $options = [])
     {
-        $cloudinary = $this->cloudinary;
-        $options = array_merge($cloudinary::config(), $options);
+        $options = array_merge($this->cloudinary::config(), $options);
 
-        return $cloudinary::cloudinary_url($id, $options);
+        return $this->cloudinary::cloudinary_url($id, $options);
     }
 
     /**
