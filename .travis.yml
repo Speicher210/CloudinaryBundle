@@ -27,9 +27,9 @@ matrix:
       env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text --coverage-clover=coverage.clover"
       # Test LTS versions.
     - php: 7.3
-      env: DEPENDENCIES="symfony/lts:^2"
-    - php: 7.3
       env: DEPENDENCIES="symfony/lts:^3"
+    - php: 7.3
+      env: DEPENDENCIES="symfony/lts:^4"
       # Latest commit to master
     - php: 7.3
       env: STABILITY="dev"
