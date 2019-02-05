@@ -28,8 +28,6 @@ matrix:
       # Test LTS versions.
     - php: 7.3
       env: DEPENDENCIES="symfony/lts:^3"
-    - php: 7.3
-      env: DEPENDENCIES="symfony/lts:^4"
       # Latest commit to master
     - php: 7.3
       env: STABILITY="dev"
