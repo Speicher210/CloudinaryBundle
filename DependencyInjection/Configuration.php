@@ -15,8 +15,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('speicher210_cloudinary');
+        $treeBuilder = new TreeBuilder('speicher210_cloudinary');
+        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('speicher210_cloudinary');
 
         $rootNode
             ->children()
