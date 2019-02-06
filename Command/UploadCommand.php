@@ -37,7 +37,7 @@ class UploadCommand extends ContainerAwareCommand
             ->addOption(
                 'prefix',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 'Add prefix to uploaded files.'
             )
             ->addOption(
