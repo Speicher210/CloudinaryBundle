@@ -34,7 +34,12 @@ class UploadCommand extends ContainerAwareCommand
                 'Upload files from a directory to Cloudinary. The public ID will be the name of the file. It will overwrite the existing files automatically.'
             )
             ->addArgument('directory', InputArgument::REQUIRED, 'The directory from where to upload the files.')
-            ->addArgument('prefix', InputArgument::OPTIONAL, 'Add prefix to uploaded files.')
+            ->addOption(
+                'prefix',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Add prefix to uploaded files.'
+            )
             ->addOption(
                 'filter',
                 null,
@@ -51,7 +56,7 @@ class UploadCommand extends ContainerAwareCommand
         $this->uploader = $this->getContainer()->get('speicher210_cloudinary.uploader');
 
         $files  = Finder::create()->files()->in($input->getArgument('directory'));
-        $prefix = ($input->getArgument('prefix') === null) ? '' : $input->getArgument('prefix');
+        $prefix = $input->getOption('prefix');
         if ($input->getOption('filter')) {
             $files->name($input->getOption('filter'));
         }
