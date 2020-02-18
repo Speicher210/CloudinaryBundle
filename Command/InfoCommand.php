@@ -3,7 +3,9 @@
 namespace Speicher210\CloudinaryBundle\Command;
 
 use Cloudinary\Api\Response;
+use Speicher210\CloudinaryBundle\Cloudinary\Api;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,8 +15,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to get info about a resource.
  */
-class InfoCommand extends ContainerAwareCommand
+class InfoCommand extends Command
 {
+    /**
+     * Cloudinary API.
+     *
+     * @var Api
+     */
+    private $api;
+
+    public function __construct(Api $api)
+    {
+        $this->api = $api;
+
+        parent::__construct();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -31,9 +47,7 @@ class InfoCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $api = $this->getContainer()->get('speicher210_cloudinary.api');
-
-        $response = $api->resource($input->getArgument('public_id'));
+        $response = $this->api->resource($input->getArgument('public_id'));
 
         $this->renderProperties($output, $response);
 

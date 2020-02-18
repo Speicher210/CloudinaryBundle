@@ -3,7 +3,8 @@
 namespace Speicher210\CloudinaryBundle\Command;
 
 use Cloudinary\Api\Response;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,8 +15,22 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 /**
  * Command to remove resources from Cloudinary API.
  */
-class DeleteCommand extends ContainerAwareCommand
+class DeleteCommand extends Command
 {
+    /**
+     * Cloudinary API.
+     *
+     * @var Api
+     */
+    private $api;
+
+    public function __construct(Api $api)
+    {
+        $this->api = $api;
+
+        parent::__construct();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -74,9 +89,7 @@ class DeleteCommand extends ContainerAwareCommand
             sprintf('<comment>Removing all resources from <info>%s</info></comment>', $prefix)
         );
 
-        $api = $this->getCloudinaryApi();
-
-        $response = $api->delete_resources_by_prefix($prefix);
+        $response = $this->api->delete_resources_by_prefix($prefix);
         $this->outputApiResponse($response, 'deleted', $output);
     }
 
@@ -93,9 +106,7 @@ class DeleteCommand extends ContainerAwareCommand
             sprintf('<comment>Removing resource <info>%s</info></comment>', $resource)
         );
 
-        $api = $this->getCloudinaryApi();
-
-        $response = $api->delete_resources($resource);
+        $response = $this->api->delete_resources($resource);
         $this->outputApiResponse($response, 'deleted', $output);
     }
 
@@ -115,15 +126,5 @@ class DeleteCommand extends ContainerAwareCommand
         }
 
         $table->render();
-    }
-
-    /**
-     * Get the cloudinary API.
-     *
-     * @return \Speicher210\CloudinaryBundle\Cloudinary\Api
-     */
-    private function getCloudinaryApi()
-    {
-        return $this->getContainer()->get('speicher210_cloudinary.api');
     }
 }
