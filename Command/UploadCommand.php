@@ -3,7 +3,7 @@
 namespace Speicher210\CloudinaryBundle\Command;
 
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,7 +14,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * Command to upload to Cloudinary the images needed for the demo beacons.
  */
-class UploadCommand extends ContainerAwareCommand
+class UploadCommand extends Command
 {
     /**
      * Cloudinary uploader.
@@ -22,6 +22,13 @@ class UploadCommand extends ContainerAwareCommand
      * @var Uploader
      */
     private $uploader;
+
+    public function __construct(Uploader $uploader)
+    {
+        $this->uploader = $uploader;
+
+        parent::__construct();
+    }
 
     /**
      * {@inheritdoc}
@@ -53,8 +60,6 @@ class UploadCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->uploader = $this->getContainer()->get('speicher210_cloudinary.uploader');
-
         $files  = Finder::create()->files()->in($input->getArgument('directory'));
         $prefix = $input->getOption('prefix');
         if ($input->getOption('filter')) {

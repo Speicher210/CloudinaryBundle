@@ -23,5 +23,20 @@
             <argument type="service" id="speicher210_cloudinary.cloudinary"/>
             <tag name="twig.extension"/>
         </service>
+
+        <service id="speicher210_cloudinary.command.delete" class="Speicher210\CloudinaryBundle\Command\DeleteCommand">
+            <argument type="service" id="speicher210_cloudinary.api" />
+            <tag name="console.command" command="sp210:cloudinary:delete" />
+        </service>
+
+        <service id="speicher210_cloudinary.command.info" class="Speicher210\CloudinaryBundle\Command\InfoCommand">
+            <argument type="service" id="speicher210_cloudinary.api" />
+            <tag name="console.command" command="sp210:cloudinary:info" />
+        </service>
+
+        <service id="speicher210_cloudinary.command.upload" class="Speicher210\CloudinaryBundle\Command\UploadCommand">
+            <argument type="service" id="speicher210_cloudinary.uploader" />
+            <tag name="console.command" command="sp210:cloudinary:upload" />
+        </service>
     </services>
 </container>
