@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": "^7.1",
-    "symfony/framework-bundle": "^3.4|^4.1",
+    "symfony/framework-bundle": "^3.4|^4.1.12",
     "symfony/yaml": "^3.4|^4.1",
     "symfony/console": "^3.4|^4.1",
     "symfony/finder":"^3.4|^4.1",
@@ -22,7 +22,7 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "symfony/phpunit-bridge": "^3.4|^4.1",
+    "symfony/phpunit-bridge": "^3.4|^4.1.12",
     "twig/twig": "^1.18|^2.0|^3.0"
   },
   "suggest": {
