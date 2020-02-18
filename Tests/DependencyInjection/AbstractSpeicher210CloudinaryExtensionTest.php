@@ -20,7 +20,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($extension = new Speicher210CloudinaryExtension());

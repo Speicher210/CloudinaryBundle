@@ -5,11 +5,13 @@ namespace Speicher210\CloudinaryBundle\Tests\Twig\Extension;
 use PHPUnit\Framework\TestCase;
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 use Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class CloudinaryExtensionTest extends TestCase
 {
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $twig;
 
@@ -26,12 +28,12 @@ class CloudinaryExtensionTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->cloudinary = new Cloudinary(['cloud_name' => 'test']);
-        $this->extension = new CloudinaryExtension($this->cloudinary);
+        $this->extension  = new CloudinaryExtension($this->cloudinary);
 
-        $this->twig = new \Twig_Environment(new \Twig_Loader_Filesystem());
+        $this->twig = new Environment(new FilesystemLoader());
         $this->twig->addExtension($this->extension);
     }
 

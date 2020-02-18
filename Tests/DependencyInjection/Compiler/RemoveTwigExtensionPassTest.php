@@ -21,7 +21,7 @@ class RemoveTwigExtensionPassTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->container = $this->getMockBuilder(ContainerBuilder::class)
             ->setMethods(['hasDefinition', 'removeDefinition'])
