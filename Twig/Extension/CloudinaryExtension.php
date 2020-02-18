@@ -3,11 +3,14 @@
 namespace Speicher210\CloudinaryBundle\Twig\Extension;
 
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Cloudinary twig extension.
  */
-class CloudinaryExtension extends \Twig_Extension
+class CloudinaryExtension extends AbstractExtension
 {
     /**
      * @var Cloudinary
@@ -28,9 +31,9 @@ class CloudinaryExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('cloudinary_url', [$this, 'getUrl']),
-            new \Twig_SimpleFunction('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('cloudinary_video_tag', [$this, 'getVideoTag'], ['is_safe' => ['html']]),
+            new TwigFunction('cloudinary_url', [$this, 'getUrl']),
+            new TwigFunction('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
+            new TwigFunction('cloudinary_video_tag', [$this, 'getVideoTag'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -40,9 +43,9 @@ class CloudinaryExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('cloudinary_url', [$this, 'getUrl']),
-            new \Twig_SimpleFilter('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('cloudinary_video_tag', [$this, 'getVideoTag'], ['is_safe' => ['html']]),
+            new TwigFilter('cloudinary_url', [$this, 'getUrl']),
+            new TwigFilter('cloudinary_image_tag', [$this, 'getImageTag'], ['is_safe' => ['html']]),
+            new TwigFilter('cloudinary_video_tag', [$this, 'getVideoTag'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -85,13 +88,5 @@ class CloudinaryExtension extends \Twig_Extension
     public function getVideoTag($id, $options = [])
     {
         return cl_video_tag($id, $options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'cloudinary';
     }
 }

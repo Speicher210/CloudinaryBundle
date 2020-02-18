@@ -23,7 +23,7 @@
   "require-dev": {
     "roave/security-advisories": "dev-master",
     "symfony/phpunit-bridge": "^3.4|^4.1",
-    "twig/twig": "^1.18|^2.0"
+    "twig/twig": "^1.18|^2.0|^3.0"
   },
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
