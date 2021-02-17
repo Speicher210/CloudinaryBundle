@@ -51,10 +51,10 @@ jobs:
             php-version: "7.3"
             stability: "dev"
 
-#          - php-version: "8.0"
-#            dependencies: "highest"
-#            stability: "dev"
-#            symfony-deprecations-helper: "weak"
+          - php-version: "8.0"
+            dependencies: "highest"
+            stability: "dev"
+            symfony-deprecations-helper: "weak"
 
     steps:
       - name: "Checkout"
