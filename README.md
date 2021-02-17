@@ -8,11 +8,28 @@
 
 Add [`speicher210/cloudinary-bundle`](https://packagist.org/packages/speicher210/CloudinaryBundle) to your `composer.json` file:
 
-    composer require "speicher210/cloudinary-bundle"
+``` bash
+composer require "speicher210/cloudinary-bundle"
+```
 
-Register the bundle in `app/AppKernel.php`:
+Register the bundle:
 
 ``` php
+<?php
+// config/bundles.php
+
+return [
+    // ...
+    Speicher210\CloudinaryBundle\Speicher210CloudinaryBundle::class => ['all' => true],
+    // ...
+];
+```
+
+or
+
+``` php
+// app/AppKernel.php
+// ...
 public function registerBundles()
 {
     return array(
@@ -21,6 +38,7 @@ public function registerBundles()
         // ...
     );
 }
+// ...
 ```
 
 ## Usage
