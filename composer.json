@@ -22,7 +22,8 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "symfony/phpunit-bridge": "^3.4|^4.1.12|^5.0",
+    "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
+    "symfony/phpunit-bridge": "^4.2",
     "twig/twig": "^1.18|^2.0|^3.0"
   },
   "suggest": {

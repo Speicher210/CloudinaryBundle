@@ -2,9 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/tag/Speicher210/CloudinaryBundle.svg?style=flat-square)](https://github.com/Speicher210/CloudinaryBundle/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/Speicher210/CloudinaryBundle/master.svg?style=flat-square)](https://travis-ci.org/Speicher210/CloudinaryBundle)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/Speicher210/CloudinaryBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Speicher210/CloudinaryBundle/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/Speicher210/CloudinaryBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Speicher210/CloudinaryBundle)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/Speicher210/CloudinaryBundle/master?style=flat-square)
 
 ## Install
 
