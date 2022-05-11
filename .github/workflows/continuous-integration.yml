@@ -20,10 +20,9 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.1"
-          - "7.2"
-          - "7.3"
           - "7.4"
+          - "8.0"
+          - "8.1"
         dependencies:
           - "highest"
         stability:
@@ -36,19 +35,19 @@ jobs:
           # Tests the lowest set of dependencies
           - dependencies: "lowest"
             stability: "stable"
-            php-version: "7.1"
+            php-version: "7.4"
             symfony-deprecations-helper: "weak"
 
           # Test against latest Symfony 4.4 dev
           - symfony-require: "4.4.*"
             dependencies: "highest"
-            php-version: "7.3"
+            php-version: "7.4"
             stability: "dev"
 
           # Test against latest Symfony 5.4 dev
           - symfony-require: "5.4.*"
             dependencies: "highest"
-            php-version: "7.3"
+            php-version: "7.4"
             stability: "dev"
 
           # Test against latest Symfony 6.0 dev
@@ -57,7 +56,7 @@ jobs:
             php-version: "8.0"
             stability: "dev"
 
-          - php-version: "8.0"
+          - php-version: "8.1"
             dependencies: "highest"
             stability: "dev"
             symfony-deprecations-helper: "weak"
