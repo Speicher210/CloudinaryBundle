@@ -45,8 +45,8 @@ jobs:
             php-version: "7.3"
             stability: "dev"
 
-          # Test against latest Symfony 5.2 dev
-          - symfony-require: "5.2.*"
+          # Test against latest Symfony 5.4 dev
+          - symfony-require: "5.4.*"
             dependencies: "highest"
             php-version: "7.3"
             stability: "dev"
