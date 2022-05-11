@@ -27,6 +27,7 @@ class CloudinaryExtension extends AbstractExtension
 
     /**
      * {@inheritdoc}
+     * @return array
      */
     public function getFunctions()
     {
@@ -39,6 +40,7 @@ class CloudinaryExtension extends AbstractExtension
 
     /**
      * {@inheritdoc}
+     * @return array
      */
     public function getFilters()
     {
