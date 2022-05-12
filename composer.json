@@ -24,7 +24,7 @@
     "roave/security-advisories": "dev-master",
     "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
     "symfony/phpunit-bridge": "^4.4|^5.4|^6.0",
-    "twig/twig": "^2.0|^3.0"
+    "twig/twig": "^3.0"
   },
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
