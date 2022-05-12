@@ -2,7 +2,11 @@
   "name": "speicher210/cloudinary-bundle",
   "type": "symfony-bundle",
   "description": "Bundle for Cloudinary PHP API library",
-  "keywords": ["cloudinary", "symfony", "bundle"],
+  "keywords": [
+    "cloudinary",
+    "symfony",
+    "bundle"
+  ],
   "homepage": "https://github.com/Speicher210/CloudinaryBundle",
   "license": "MIT",
   "authors": [
@@ -13,18 +17,17 @@
     }
   ],
   "require": {
-    "php": "^7.4|^8.0",
-    "symfony/framework-bundle": "^4.4|^5.4|^6.0",
-    "symfony/yaml": "^4.4|^5.4|^6.0",
-    "symfony/console": "^4.4|^5.4|^6.0",
-    "symfony/finder":"^4.4|^5.4|^6.0",
-    "cloudinary/cloudinary_php": "^1.1"
+    "php": "^7.4 || ^8.0",
+    "symfony/framework-bundle": "^4.4  || ^5.4  || ^6.0",
+    "symfony/yaml": "^4.4 || ^5.4 || ^6.0",
+    "symfony/console": "^4.4 || ^5.4  || ^6.0",
+    "symfony/finder": "^4.4 || ^5.4 || ^6.0",
+    "cloudinary/cloudinary_php": "^1.20"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
-    "symfony/phpunit-bridge": "^4.4|^5.4|^6.0",
-    "twig/twig": "^2.0|^3.0"
+    "roave/security-advisories": "dev-latest",
+    "symfony/phpunit-bridge": "^6.0",
+    "twig/twig": "^1.44 || ^2.0 || ^3.0"
   },
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
@@ -38,5 +41,6 @@
     "psr-4": {
       "Speicher210\\CloudinaryBundle\\Tests\\": "Tests"
     }
-  }
+  },
+  "minimum-stability": "stable"
 }

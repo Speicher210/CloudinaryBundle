@@ -1,0 +1,82 @@
+[
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFunction",
+        "message": "strlen(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 2
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFunction",
+        "message": "substr(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 4
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFunction",
+        "message": "preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated",
+        "count": 11
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFunction",
+        "message": "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 36
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFilter",
+        "message": "strlen(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 2
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFilter",
+        "message": "substr(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 4
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFilter",
+        "message": "preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated",
+        "count": 11
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testImageTagFilter",
+        "message": "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 36
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFunction",
+        "message": "strlen(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 10
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFunction",
+        "message": "substr(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 20
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFunction",
+        "message": "preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated",
+        "count": 55
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFunction",
+        "message": "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 180
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFilter",
+        "message": "strlen(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 10
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFilter",
+        "message": "substr(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 20
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFilter",
+        "message": "preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated",
+        "count": 55
+    },
+    {
+        "location": "Speicher210\\CloudinaryBundle\\Tests\\Twig\\Extension\\CloudinaryExtensionTest::testVideoTagFilter",
+        "message": "trim(): Passing null to parameter #1 ($string) of type string is deprecated",
+        "count": 180
+    }
+]
