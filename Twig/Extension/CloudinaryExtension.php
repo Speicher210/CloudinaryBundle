@@ -62,6 +62,7 @@ class CloudinaryExtension extends AbstractExtension
     public function getUrl($id, $options = [])
     {
         $cloudinary = $this->cloudinary;
+        $options = array_merge($cloudinary::config(), $options);
 
         return $cloudinary::cloudinary_url($id, $options);
     }
@@ -76,6 +77,9 @@ class CloudinaryExtension extends AbstractExtension
      */
     public function getImageTag($id, $options = [])
     {
+        $cloudinary = $this->cloudinary;
+        $options = array_merge($cloudinary::config(), $options);
+
         return cl_image_tag($id, $options);
     }
 
@@ -89,6 +93,9 @@ class CloudinaryExtension extends AbstractExtension
      */
     public function getVideoTag($id, $options = [])
     {
+        $cloudinary = $this->cloudinary;
+        $options = array_merge($cloudinary::config(), $options);
+
         return cl_video_tag($id, $options);
     }
 }
