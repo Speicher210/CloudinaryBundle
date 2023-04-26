@@ -18,9 +18,7 @@ class RemoveTwigExtensionPassTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->container = $this->getMockBuilder(ContainerBuilder::class)
-            ->setMethods(['hasDefinition', 'removeDefinition'])
-            ->getMock();
+        $this->container = $this->createMock(ContainerBuilder::class);
 
         $this->compilerPass = new RemoveTwigExtensionPass();
     }
@@ -28,15 +26,15 @@ class RemoveTwigExtensionPassTest extends TestCase
     public function testProcessWithTwig(): void
     {
         $this->container
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasDefinition')
-            ->with($this->identicalTo('twig'))
-            ->will($this->returnValue(true));
+            ->with('twig')
+            ->willReturn(true);
 
         $this->container
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('removeDefinition')
-            ->with($this->identicalTo('twig.extension.cloudinary'));
+            ->with('twig.extension.cloudinary');
 
         $this->compilerPass->process($this->container);
     }
@@ -44,15 +42,15 @@ class RemoveTwigExtensionPassTest extends TestCase
     public function testProcessWithoutTwig(): void
     {
         $this->container
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasDefinition')
-            ->with($this->identicalTo('twig'))
-            ->will($this->returnValue(false));
+            ->with('twig')
+            ->willReturn(false);
 
         $this->container
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('removeDefinition')
-            ->with($this->identicalTo('twig.extension.cloudinary'));
+            ->with('twig.extension.cloudinary');
 
         $this->compilerPass->process($this->container);
     }

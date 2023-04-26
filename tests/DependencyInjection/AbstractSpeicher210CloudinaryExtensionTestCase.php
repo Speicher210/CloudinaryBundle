@@ -12,7 +12,7 @@ use Speicher210\CloudinaryBundle\DependencyInjection\Speicher210CloudinaryExtens
 use Speicher210\CloudinaryBundle\Twig\Extension\CloudinaryExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
+abstract class AbstractSpeicher210CloudinaryExtensionTestCase extends TestCase
 {
     private ContainerBuilder $container;
 

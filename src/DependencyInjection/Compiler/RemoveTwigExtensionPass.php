@@ -12,10 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class RemoveTwigExtensionPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if ($container->hasDefinition('twig')) {
             return;
