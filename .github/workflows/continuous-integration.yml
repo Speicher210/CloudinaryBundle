@@ -14,7 +14,7 @@ jobs:
     runs-on: "ubuntu-latest"
     env:
       SYMFONY_REQUIRE: ${{matrix.symfony-require}}
-      SYMFONY_DEPRECATIONS_HELPER: "baselineFile=./Tests/allowed-deprecations.json"
+      SYMFONY_DEPRECATIONS_HELPER: "baselineFile=./tests/allowed-deprecations.json"
 
     strategy:
       fail-fast: false
@@ -81,8 +81,8 @@ jobs:
           coverage: "pcov"
           ini-values: "zend.assertions=1"
 
-      - name: "Globally install symfony/flex"
-        run: "composer global require --no-progress --no-scripts --no-plugins symfony/flex"
+#      - name: "Globally install symfony/flex"
+#        run: "composer global require --no-progress --no-scripts --no-plugins symfony/flex"
 
       - name: "Install dependencies with Composer"
         uses: "ramsey/composer-install@v1"
