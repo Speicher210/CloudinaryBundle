@@ -8,9 +8,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * This class removes the Twig extension if Twig is not available.
+ * Remove the Twig extension if Twig is not available.
  */
-class RemoveTwigExtensionPass implements CompilerPassInterface
+final class RemoveTwigExtensionPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {

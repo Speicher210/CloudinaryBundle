@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Cloudinary;
 
-/**
- * Cloudinary wrapper class for Cloudinary.
- */
-class Cloudinary extends \Cloudinary
+class Cloudinary extends \Cloudinary\Cloudinary
 {
-    /**
-     * @param array<mixed> $config The cloudinary configurations.
-     */
-    public function __construct(array $config)
+    public function adminApi(): Admin
     {
-        static::config($config);
+        return new Admin($this->configuration);
+    }
+
+    public function uploadApi(): Uploader
+    {
+        return new Uploader($this->configuration);
     }
 }

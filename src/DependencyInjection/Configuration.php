@@ -7,10 +7,7 @@ namespace Speicher210\CloudinaryBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This class contains the configuration information for the bundle.
- */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -33,9 +30,8 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('options')
-                  ->prototype('variable')->end()
-                ->end();
+                ->booleanNode('secure')->defaultTrue()->end()
+            ->end();
 
         return $treeBuilder;
     }

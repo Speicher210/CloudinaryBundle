@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection;
 
+use Cloudinary\Configuration\Configuration;
 use PHPUnit\Framework\TestCase;
-use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Speicher210\CloudinaryBundle\Cloudinary\Admin;
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 use Speicher210\CloudinaryBundle\DependencyInjection\Speicher210CloudinaryExtension;
@@ -37,9 +38,11 @@ abstract class AbstractSpeicher210CloudinaryExtensionTestCase extends TestCase
         $this->container->compile();
 
         // Need to trigger a load.
-        $this->container->get('speicher210_cloudinary.cloudinary');
+        $service = $this->container->get('speicher210_cloudinary.cloudinary');
 
-        $this->assertDefaultConfig();
+        static::assertInstanceOf(Cloudinary::class, $service);
+
+        $this->assertDefaultConfig($service->configuration);
     }
 
     public function testCloudinaryService(): void
@@ -50,22 +53,8 @@ abstract class AbstractSpeicher210CloudinaryExtensionTestCase extends TestCase
         $cloudinary = $this->container->get('speicher210_cloudinary.cloudinary');
 
         static::assertInstanceOf(Cloudinary::class, $cloudinary);
-        static::assertInstanceOf(\Cloudinary::class, $cloudinary);
 
-        $this->assertDefaultConfig();
-    }
-
-    public function testApiService(): void
-    {
-        $this->loadConfiguration($this->container, 'default');
-        $this->container->compile();
-
-        $api = $this->container->get('speicher210_cloudinary.api');
-
-        static::assertInstanceOf(Api::class, $api);
-        static::assertInstanceOf(\Cloudinary\Api::class, $api);
-
-        $this->assertDefaultConfig();
+        $this->assertDefaultConfig($cloudinary->configuration);
     }
 
     public function testUploaderService(): void
@@ -76,9 +65,20 @@ abstract class AbstractSpeicher210CloudinaryExtensionTestCase extends TestCase
         $uploader = $this->container->get('speicher210_cloudinary.uploader');
 
         static::assertInstanceOf(Uploader::class, $uploader);
-        static::assertInstanceOf(\Cloudinary\Uploader::class, $uploader);
 
-        $this->assertDefaultConfig();
+        $this->assertDefaultConfig($uploader->configuration);
+    }
+
+    public function testAdminService(): void
+    {
+        $this->loadConfiguration($this->container, 'default');
+        $this->container->compile();
+
+        $admin = $this->container->get('speicher210_cloudinary.admin');
+
+        static::assertInstanceOf(Admin::class, $admin);
+
+        $this->assertDefaultConfig($admin->configuration);
     }
 
     public function testTwigExtensionService(): void
@@ -88,27 +88,28 @@ abstract class AbstractSpeicher210CloudinaryExtensionTestCase extends TestCase
 
         $service = 'twig.extension.cloudinary';
 
-        static::assertInstanceOf(
-            CloudinaryExtension::class,
-            $this->container->get($service),
-        );
+        static::assertInstanceOf(CloudinaryExtension::class, $this->container->get($service));
 
         static::assertTrue($this->container->getDefinition($service)->hasTag('twig.extension'));
-        $this->assertDefaultConfig();
     }
 
     /**
      * Asserts that the default configuration has been populated.
      */
-    private function assertDefaultConfig(): void
+    private function assertDefaultConfig(Configuration $configuration): void
     {
+        static::assertTrue($configuration->url->secure);
         static::assertSame(
             [
                 'cloud_name' => 'name',
                 'api_key' => 'key',
                 'api_secret' => 'secret',
             ],
-            \Cloudinary::config(),
+            [
+                'cloud_name' => $configuration->cloud->cloudName,
+                'api_key' => $configuration->cloud->apiKey,
+                'api_secret' => $configuration->cloud->apiSecret,
+            ],
         );
     }
 }

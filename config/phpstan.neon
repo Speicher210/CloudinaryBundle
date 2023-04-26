@@ -14,3 +14,4 @@ includes:
     - ../vendor/phpstan/phpstan-strict-rules/rules.neon
     - ../vendor/phpstan/phpstan-symfony/extension.neon
     - ../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+    - ../vendor/php-standard-library/phpstan-extension/extension.neon
