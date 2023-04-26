@@ -29,10 +29,8 @@ class CloudinaryExtension extends AbstractExtension
 
     /**
      * {@inheritDoc}
-     *
-     * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('cloudinary_url', [$this, 'getUrl']),
@@ -43,10 +41,8 @@ class CloudinaryExtension extends AbstractExtension
 
     /**
      * {@inheritDoc}
-     *
-     * @return array
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('cloudinary_url', [$this, 'getUrl']),

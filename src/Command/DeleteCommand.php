@@ -56,10 +56,7 @@ class DeleteCommand extends Command
             );
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         assert($helper instanceof QuestionHelper);
@@ -67,7 +64,7 @@ class DeleteCommand extends Command
             '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]',
         );
         if (! $helper->ask($input, $output, $question)) {
-            return;
+            return Command::SUCCESS;
         }
 
         if ($input->getOption('prefix')) {
@@ -75,10 +72,12 @@ class DeleteCommand extends Command
         }
 
         if (! $input->getOption('resource')) {
-            return;
+            return Command::SUCCESS;
         }
 
         $this->removeResource($input, $output);
+
+        return Command::SUCCESS;
     }
 
     /**
