@@ -93,3 +93,4 @@ jobs:
         run: |
           vendor/bin/simple-phpunit install
           vendor/bin/simple-phpunit --coverage-clover=coverage.xml
+          make check

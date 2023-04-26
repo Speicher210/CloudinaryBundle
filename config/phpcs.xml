@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset
+        name="Coding standard"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="../"/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <!-- Ignore warnings, show progress of the run, show sniff name -->
+    <arg value="nps"/>
+
+    <!-- inherit rules from: -->
+    <rule ref="Doctrine">
+        <exclude name="Generic.NamingConventions.ConstructorName"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment"/>
+        <exclude name="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion.RequiredConstructorPropertyPromotion"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+    </rule>
+    <!-- Project rules -->
+    <rule ref="Generic.Files.LineLength">
+        <severity>0</severity>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="Speicher210\CloudinaryBundle"/>
+                <element key="tests" value="Speicher210\CloudinaryBundle\Tests"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Paths to check -->
+    <file>../src</file>
+    <file>../tests</file>
+</ruleset>

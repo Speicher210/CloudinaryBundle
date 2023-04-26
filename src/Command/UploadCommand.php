@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Command;
 
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
@@ -10,6 +12,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Throwable;
+
+use function assert;
+use function sprintf;
 
 /**
  * Command to upload to Cloudinary the images needed for the demo beacons.
@@ -18,10 +24,8 @@ class UploadCommand extends Command
 {
     /**
      * Cloudinary uploader.
-     *
-     * @var Uploader
      */
-    private $uploader;
+    private Uploader $uploader;
 
     public function __construct(Uploader $uploader)
     {
@@ -31,32 +35,32 @@ class UploadCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure()
     {
         $this
             ->setName('sp210:cloudinary:upload')
             ->setDescription(
-                'Upload files from a directory to Cloudinary. The public ID will be the name of the file. It will overwrite the existing files automatically.'
+                'Upload files from a directory to Cloudinary. The public ID will be the name of the file. It will overwrite the existing files automatically.',
             )
             ->addArgument('directory', InputArgument::REQUIRED, 'The directory from where to upload the files.')
             ->addOption(
                 'prefix',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Add prefix to uploaded files.'
+                'Add prefix to uploaded files.',
             )
             ->addOption(
                 'filter',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Filter to apply when scanning the directory (ex: "*.jpg").'
+                'Filter to apply when scanning the directory (ex: "*.jpg").',
             );
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -66,16 +70,16 @@ class UploadCommand extends Command
             $files->name($input->getOption('filter'));
         }
 
-        /** @var SplFileInfo $file */
         foreach ($files as $file) {
+            assert($file instanceof SplFileInfo);
             try {
                 $fileName = $prefix . $file->getBasename('.' . $file->getExtension());
                 $this->uploadFileToCloudinary($file, $fileName);
 
                 $output->writeln(sprintf('Uploaded image <info>%s</info>', $file->getRealPath()));
-            } catch (\Exception $e) {
+            } catch (Throwable $e) {
                 $output->writeln(
-                    sprintf('An error has occurred while trying to upload image: %s', $e->getMessage())
+                    sprintf('An error has occurred while trying to upload image: %s', $e->getMessage()),
                 );
             }
         }
@@ -87,17 +91,13 @@ class UploadCommand extends Command
      * @param SplFileInfo $file     The file to upload.
      * @param string      $publicId Path where to upload in Cloudinary.
      *
-     * @return array
+     * @return array<mixed>
      */
-    protected function uploadFileToCloudinary($file, $publicId)
+    protected function uploadFileToCloudinary(SplFileInfo $file, string $publicId): array
     {
-        $result = $this->uploader->upload(
+        return $this->uploader->upload(
             $file->getRealPath(),
-            [
-                'public_id' => $publicId,
-            ]
+            ['public_id' => $publicId],
         );
-
-        return $result;
     }
 }

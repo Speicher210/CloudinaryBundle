@@ -1,14 +1,13 @@
 {
   "name": "speicher210/cloudinary-bundle",
-  "type": "symfony-bundle",
   "description": "Bundle for Cloudinary PHP API library",
+  "license": "MIT",
+  "type": "symfony-bundle",
   "keywords": [
     "cloudinary",
     "symfony",
     "bundle"
   ],
-  "homepage": "https://github.com/Speicher210/CloudinaryBundle",
-  "license": "MIT",
   "authors": [
     {
       "name": "Dragos Protung",
@@ -16,15 +15,18 @@
       "role": "Developer"
     }
   ],
+  "homepage": "https://github.com/Speicher210/CloudinaryBundle",
   "require": {
     "php": "^7.4 || ^8.0",
-    "symfony/framework-bundle": "^4.4  || ^5.4  || ^6.0",
-    "symfony/yaml": "^4.4 || ^5.4 || ^6.0",
-    "symfony/console": "^4.4 || ^5.4  || ^6.0",
+    "cloudinary/cloudinary_php": "^1.20",
+    "symfony/console": "^4.4 || ^5.4 || ^6.0",
     "symfony/finder": "^4.4 || ^5.4 || ^6.0",
-    "cloudinary/cloudinary_php": "^1.20"
+    "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.0",
+    "symfony/yaml": "^4.4 || ^5.4 || ^6.0"
   },
   "require-dev": {
+    "doctrine/coding-standard": "^12.0",
+    "ergebnis/composer-normalize": "^2.28.3",
     "roave/security-advisories": "dev-latest",
     "symfony/phpunit-bridge": "^6.0",
     "twig/twig": "^1.44 || ^2.0 || ^3.0"
@@ -32,7 +34,7 @@
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
   },
-
+  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Speicher210\\CloudinaryBundle\\": "src/"
@@ -43,5 +45,10 @@
       "Speicher210\\CloudinaryBundle\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "stable"
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ergebnis/composer-normalize": true
+    }
+  }
 }

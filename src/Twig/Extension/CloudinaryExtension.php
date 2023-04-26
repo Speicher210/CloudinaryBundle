@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Twig\Extension;
 
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
@@ -7,15 +9,15 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
+use function cl_image_tag;
+use function cl_video_tag;
+
 /**
  * Cloudinary twig extension.
  */
 class CloudinaryExtension extends AbstractExtension
 {
-    /**
-     * @var Cloudinary
-     */
-    private $cloudinary;
+    private Cloudinary $cloudinary;
 
     /**
      * @param Cloudinary $cloudinary The cloudinary library.
@@ -26,7 +28,8 @@ class CloudinaryExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
      * @return array
      */
     public function getFunctions()
@@ -39,7 +42,8 @@ class CloudinaryExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
      * @return array
      */
     public function getFilters()
@@ -54,12 +58,10 @@ class CloudinaryExtension extends AbstractExtension
     /**
      * Get the cloudinary URL.
      *
-     * @param string $id Public ID.
-     * @param array $options options for the image.
-     *
-     * @return string
+     * @param string       $id      Public ID.
+     * @param array<mixed> $options options for the image.
      */
-    public function getUrl($id, $options = [])
+    public function getUrl(string $id, array $options = []): string
     {
         $cloudinary = $this->cloudinary;
 
@@ -69,12 +71,10 @@ class CloudinaryExtension extends AbstractExtension
     /**
      * Get the cloudinary image tag.
      *
-     * @param string $id Public ID.
-     * @param array $options options for the image.
-     *
-     * @return string
+     * @param string       $id      Public ID.
+     * @param array<mixed> $options options for the image.
      */
-    public function getImageTag($id, $options = [])
+    public function getImageTag(string $id, array $options = []): string
     {
         return cl_image_tag($id, $options);
     }
@@ -82,12 +82,10 @@ class CloudinaryExtension extends AbstractExtension
     /**
      * Get the cloudinary video tag.
      *
-     * @param string $id Public ID.
-     * @param array $options Options for the image.
-     *
-     * @return string
+     * @param string       $id      Public ID.
+     * @param array<mixed> $options Options for the image.
      */
-    public function getVideoTag($id, $options = [])
+    public function getVideoTag(string $id, array $options = []): string
     {
         return cl_video_tag($id, $options);
     }
