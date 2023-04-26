@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Cloudinary;
 
-use Cloudinary\Api\Upload\UploadApi;
+use Cloudinary\Api\Admin\AdminApi;
 use Cloudinary\Configuration\Configuration;
 
-class Uploader extends UploadApi
+class Admin extends AdminApi
 {
     public readonly Configuration $configuration;
 

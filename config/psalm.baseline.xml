@@ -6,26 +6,13 @@
     </InvalidArrayOffset>
   </file>
   <file src="../src/Command/UploadCommand.php">
-    <RedundantConditionGivenDocblockType>
-      <code>assert($file instanceof SplFileInfo)</code>
-    </RedundantConditionGivenDocblockType>
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$file->getFilename()]]></code>
+    </ArgumentTypeCoercion>
   </file>
   <file src="../src/DependencyInjection/Configuration.php">
     <UndefinedMethod>
       <code>children</code>
     </UndefinedMethod>
-  </file>
-  <file src="../src/DependencyInjection/Speicher210CloudinaryExtension.php">
-    <ParamNameMismatch>
-      <code>$config</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="../tests/DependencyInjection/Compiler/RemoveTwigExtensionPassTest.php">
-    <PossiblyUndefinedMethod>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
   </file>
 </files>

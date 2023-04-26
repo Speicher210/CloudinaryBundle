@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Factory;
 
+use Cloudinary\Configuration\Configuration;
 use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
 
 use function array_key_exists;
-use function array_merge;
 use function parse_url;
 
-class CloudinaryFactory
+final class CloudinaryFactory
 {
+    private readonly Configuration $configuration;
+
     /**
-     * @param array<mixed> $config
+     * @param array{url?: string, cloud_name?: string, access_identifier?: array{api_key: string, api_secret: string}, secure?: bool} $config
      */
-    public static function createCloudinary(array $config = []): Cloudinary
+    public function __construct(array $config)
     {
         if (array_key_exists('url', $config)) {
             $url = parse_url($config['url']);
@@ -41,15 +43,22 @@ class CloudinaryFactory
             throw new InvalidCloudinaryUrlException();
         }
 
-        return new Cloudinary(
-            array_merge(
-                $config['options'],
-                [
+        $this->configuration = Configuration::fromParams(
+            [
+                'cloud' => [
                     'cloud_name' => $config['cloud_name'],
                     'api_key' => $config['access_identifier']['api_key'],
                     'api_secret' => $config['access_identifier']['api_secret'],
                 ],
-            ),
+                'url' => [
+                    'secure' => $config['secure'] ?? true,
+                ],
+            ],
         );
+    }
+
+    public function createCloudinary(): Cloudinary
+    {
+        return new Cloudinary($this->configuration);
     }
 }

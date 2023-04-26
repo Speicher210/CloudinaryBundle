@@ -5,9 +5,15 @@ on:
     branches: [ 1.x ]
   pull_request:
     branches: [ 1.x ]
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
 
 jobs:
-  build:
+  check:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     env:
       SYMFONY_REQUIRE: ${{matrix.symfony-require}}

@@ -11,8 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class RemoveTwigExtensionPassTest extends TestCase
 {
-    /** @var MockObject|ContainerBuilder|(ContainerBuilder&MockObject) */
-    private $container;
+    private ContainerBuilder&MockObject $container;
 
     private RemoveTwigExtensionPass $compilerPass;
 

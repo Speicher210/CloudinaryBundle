@@ -4,32 +4,22 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Command;
 
-use Cloudinary\Api\Response;
-use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Cloudinary\Api\ApiResponse;
+use Psl\Str;
+use Speicher210\CloudinaryBundle\Cloudinary\Admin;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\QuestionHelper;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-use function assert;
-use function sprintf;
-
-/**
- * Command to remove resources from Cloudinary API.
- */
-class DeleteCommand extends Command
+final class DeleteCommand extends Command
 {
-    /**
-     * Cloudinary API.
-     */
-    private Api $api;
+    private readonly Admin $cloudinary;
 
-    public function __construct(Api $api)
+    public function __construct(Admin $cloudinary)
     {
-        $this->api = $api;
+        $this->cloudinary = $cloudinary;
 
         parent::__construct();
     }
@@ -55,74 +45,53 @@ class DeleteCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getHelper('question');
-        assert($helper instanceof QuestionHelper);
-        $question = new ConfirmationQuestion(
-            '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]',
-        );
-        if ($helper->ask($input, $output, $question) !== true) {
+        $symfonyStyle = new SymfonyStyle($input, $output);
+
+        $confirm = $symfonyStyle->confirm('Are you sure you want to remove all resources based on your criteria?', false);
+
+        if ($confirm !== true) {
             return Command::SUCCESS;
         }
 
-        if ($input->getOption('prefix')) {
-            $this->removeByPrefix($input, $output);
+        if ($input->getOption('prefix') !== null) {
+            $this->removeByPrefix($input, $symfonyStyle);
         }
 
-        if (! $input->getOption('resource')) {
-            return Command::SUCCESS;
+        if ($input->getOption('resource') !== null) {
+            $this->removeResource($input, $symfonyStyle);
         }
-
-        $this->removeResource($input, $output);
 
         return Command::SUCCESS;
     }
 
-    /**
-     * Remove resources by prefix.
-     *
-     * @param InputInterface  $input  Console input.
-     * @param OutputInterface $output Console output.
-     */
-    private function removeByPrefix(InputInterface $input, OutputInterface $output): void
+    private function removeByPrefix(InputInterface $input, SymfonyStyle $symfonyStyle): void
     {
         $prefix = $input->getOption('prefix');
-        $output->writeln(
-            sprintf('<comment>Removing all resources from <info>%s</info></comment>', $prefix),
+        $symfonyStyle->writeln(
+            Str\format('<comment>Removing all resources from <info>%s</info></comment>', $prefix),
         );
 
-        $response = $this->api->delete_resources_by_prefix($prefix);
-        $this->outputApiResponse($response, 'deleted', $output);
+        $response = $this->cloudinary->deleteAssetsByPrefix($prefix);
+        $this->outputApiResponse($response, $symfonyStyle);
     }
 
-    /**
-     * Remove a resource.
-     *
-     * @param InputInterface  $input  Console input.
-     * @param OutputInterface $output Console output.
-     */
-    private function removeResource(InputInterface $input, OutputInterface $output): void
+    private function removeResource(InputInterface $input, SymfonyStyle $symfonyStyle): void
     {
         $resource = $input->getOption('resource');
-        $output->writeln(
-            sprintf('<comment>Removing resource <info>%s</info></comment>', $resource),
+        $symfonyStyle->writeln(
+            Str\format('<comment>Removing resource <info>%s</info></comment>', $resource),
         );
 
-        $response = $this->api->delete_resources($resource);
-        $this->outputApiResponse($response, 'deleted', $output);
+        $response = $this->cloudinary->deleteAssets($resource);
+        $this->outputApiResponse($response, $symfonyStyle);
     }
 
-    /**
-     * Output the API response.
-     *
-     * @param Response        $response The response
-     * @param string          $part     The part of the response to output.
-     * @param OutputInterface $output   The console output.
-     */
-    private function outputApiResponse(Response $response, string $part, OutputInterface $output): void
+    private function outputApiResponse(ApiResponse $response, SymfonyStyle $symfonyStyle): void
     {
-        $table = new Table($output);
+        $table = $symfonyStyle->createTable();
         $table->setHeaders(['Resource', 'Status']);
-        foreach ($response[$part] as $file => $status) {
+
+        foreach ($response['deleted'] as $file => $status) {
             $table->addRow([$file, $status]);
         }
 

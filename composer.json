@@ -18,7 +18,8 @@
   "homepage": "https://github.com/Speicher210/CloudinaryBundle",
   "require": {
     "php": "~8.1.0 || ~8.2.0",
-    "cloudinary/cloudinary_php": "^1.20.2",
+    "azjezz/psl": "^2.5",
+    "cloudinary/cloudinary_php": "^2.10.2",
     "symfony/console": "^5.4 || ^6.0",
     "symfony/finder": "^5.4 || ^6.0",
     "symfony/framework-bundle": "^5.4 || ^6.0",
@@ -27,6 +28,8 @@
   "require-dev": {
     "doctrine/coding-standard": "^12.0",
     "ergebnis/composer-normalize": "^2.30.2",
+    "php-standard-library/phpstan-extension": "^1.0",
+    "php-standard-library/psalm-plugin": "^2.2",
     "phpstan/phpstan": "^1.10.14",
     "phpstan/phpstan-deprecation-rules": "^1.1.3",
     "phpstan/phpstan-phpunit": "^1.3.11",
@@ -57,6 +60,7 @@
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "ergebnis/composer-normalize": true
-    }
+    },
+    "sort-packages": true
   }
 }

@@ -4,35 +4,27 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Command;
 
-use Cloudinary\Api\Response;
-use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Cloudinary\Api\ApiResponse;
+use Speicher210\CloudinaryBundle\Cloudinary\Admin;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 use function is_scalar;
 use function log;
 use function pow;
 use function sprintf;
 
-use const PHP_EOL;
-
-/**
- * Command to get info about a resource.
- */
-class InfoCommand extends Command
+final class InfoCommand extends Command
 {
-    /**
-     * Cloudinary API.
-     */
-    private Api $api;
+    private readonly Admin $cloudinary;
 
-    public function __construct(Api $api)
+    public function __construct(Admin $cloudinary)
     {
-        $this->api = $api;
+        $this->cloudinary = $cloudinary;
 
         parent::__construct();
     }
@@ -47,29 +39,18 @@ class InfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $response = $this->api->resource($input->getArgument('public_id'));
+        $symfonyStyle = new SymfonyStyle($input, $output);
 
-        $this->renderProperties($output, $response);
+        $response = $this->cloudinary->asset($input->getArgument('public_id'));
 
-        if ($output->getVerbosity() < OutputInterface::VERBOSITY_VERBOSE) {
-            return Command::SUCCESS;
-        }
-
-        $output->writeln(PHP_EOL);
-        $this->renderDerivedResources($output, $response['derived']);
+        $this->renderProperties($symfonyStyle, $response);
 
         return Command::SUCCESS;
     }
 
-    /**
-     * Render the general properties.
-     *
-     * @param OutputInterface $output   The output.
-     * @param Response        $response The API response.
-     */
-    protected function renderProperties(OutputInterface $output, Response $response): void
+    protected function renderProperties(SymfonyStyle $symfonyStyle, ApiResponse $response): void
     {
-        $table = new Table($output);
+        $table = $symfonyStyle->createTable();
         $table->setHeaders(['Property', 'Value']);
         foreach ($response as $property => $value) {
             if (! is_scalar($value)) {
@@ -80,17 +61,21 @@ class InfoCommand extends Command
         }
 
         $table->render();
+
+        if (! $symfonyStyle->isVerbose()) {
+            return;
+        }
+
+        $symfonyStyle->newLine();
+        $this->renderDerivedResources($symfonyStyle, $response['derived']);
     }
 
     /**
-     * Render the derived resources.
-     *
-     * @param OutputInterface $output           The output.
-     * @param array<mixed>    $derivedResources The derived resources.
+     * @param array<array{id: string, format: string, bytes: int, transformation: string, url: string}> $derivedResources
      */
-    protected function renderDerivedResources(OutputInterface $output, array $derivedResources): void
+    private function renderDerivedResources(SymfonyStyle $symfonyStyle, array $derivedResources): void
     {
-        $table = new Table($output);
+        $table = $symfonyStyle->createTable();
         $table->setHeaders(
             [
                 [new TableCell('Derived resources', ['colspan' => 5])],
@@ -112,11 +97,6 @@ class InfoCommand extends Command
         $table->render();
     }
 
-    /**
-     * Format the size of a file.
-     *
-     * @param int $bytes The number of bytes.
-     */
     private function formatSize(int $bytes): string
     {
         $unit = 1024;

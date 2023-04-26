@@ -4,28 +4,22 @@ declare(strict_types=1);
 
 namespace Speicher210\CloudinaryBundle\Command;
 
+use Cloudinary\Api\ApiResponse;
+use Psl\Filesystem;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Throwable;
 
-use function assert;
-use function sprintf;
-
-/**
- * Command to upload to Cloudinary the images needed for the demo beacons.
- */
-class UploadCommand extends Command
+final class UploadCommand extends Command
 {
-    /**
-     * Cloudinary uploader.
-     */
-    private Uploader $uploader;
+    private readonly Uploader $uploader;
 
     public function __construct(Uploader $uploader)
     {
@@ -58,22 +52,37 @@ class UploadCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $symfonyStyle = new SymfonyStyle($input, $output);
+
         $files  = Finder::create()->files()->in($input->getArgument('directory'));
         $prefix = $input->getOption('prefix');
-        if ($input->getOption('filter')) {
+        if ($input->getOption('filter') !== null) {
             $files->name($input->getOption('filter'));
         }
 
-        foreach ($files as $file) {
-            assert($file instanceof SplFileInfo);
-            try {
-                $fileName = $prefix . $file->getBasename('.' . $file->getExtension());
-                $this->uploadFileToCloudinary($file, $fileName);
+        $table = $symfonyStyle->createTable();
+        $table->setHeaders(['Local file', 'Public ID', 'Error']);
+        $table->render();
 
-                $output->writeln(sprintf('Uploaded image <info>%s</info>', $file->getRealPath()));
+        foreach ($files as $file) {
+            try {
+                $publicId = $prefix . Filesystem\get_filename($file->getFilename());
+                $response = $this->uploadFileToCloudinary($file, $publicId);
+
+                $table->appendRow(
+                    [
+                        $file->getRealPath(),
+                        $response['public_id'],
+                        null,
+                    ],
+                );
             } catch (Throwable $e) {
-                $output->writeln(
-                    sprintf('An error has occurred while trying to upload image: %s', $e->getMessage()),
+                $table->appendRow(
+                    [
+                        $file->getRealPath(),
+                        $response['public_id'] ?? null,
+                        $e->getMessage(),
+                    ],
                 );
             }
         }
@@ -81,15 +90,7 @@ class UploadCommand extends Command
         return Command::SUCCESS;
     }
 
-    /**
-     * Upload a picture to Cloudinary.
-     *
-     * @param SplFileInfo $file     The file to upload.
-     * @param string      $publicId Path where to upload in Cloudinary.
-     *
-     * @return array<mixed>
-     */
-    protected function uploadFileToCloudinary(SplFileInfo $file, string $publicId): array
+    private function uploadFileToCloudinary(SplFileInfo $file, string $publicId): ApiResponse
     {
         return $this->uploader->upload(
             $file->getRealPath(),
