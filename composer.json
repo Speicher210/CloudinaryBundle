@@ -32,14 +32,15 @@
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
   },
+
   "autoload": {
     "psr-4": {
-      "Speicher210\\CloudinaryBundle\\": ""
+      "Speicher210\\CloudinaryBundle\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Speicher210\\CloudinaryBundle\\Tests\\": "Tests"
+      "Speicher210\\CloudinaryBundle\\Tests\\": "tests/"
     }
   },
   "minimum-stability": "stable"
