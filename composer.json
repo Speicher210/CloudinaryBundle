@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Speicher210/CloudinaryBundle",
   "require": {
     "php": "^7.4 || ^8.0",
-    "cloudinary/cloudinary_php": "^1.20",
+    "cloudinary/cloudinary_php": "^1.20.2",
     "symfony/console": "^4.4 || ^5.4 || ^6.0",
     "symfony/finder": "^4.4 || ^5.4 || ^6.0",
     "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.0",
