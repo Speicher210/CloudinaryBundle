@@ -7,24 +7,15 @@ namespace Speicher210\CloudinaryBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-use function method_exists;
-
 /**
  * This class contains the configuration information for the bundle.
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritDoc}
-     *
-     * @return TreeBuilder
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('speicher210_cloudinary');
-        $rootNode    = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('speicher210_cloudinary');
-
-        $rootNode
+        $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode('url')
                     ->info('Any parameter value parsed from this string will override explicitly set parameters.')

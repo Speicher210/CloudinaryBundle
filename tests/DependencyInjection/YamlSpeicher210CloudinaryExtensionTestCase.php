@@ -8,7 +8,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class YamlSpeicher210CloudinaryExtensionTest extends AbstractSpeicher210CloudinaryExtensionTest
+class YamlSpeicher210CloudinaryExtensionTestCase extends AbstractSpeicher210CloudinaryExtensionTestCase
 {
     protected function loadConfiguration(ContainerBuilder $container, string $configuration): void
     {

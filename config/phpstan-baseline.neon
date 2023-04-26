@@ -1,0 +1,136 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Constructor of class Speicher210\\\\CloudinaryBundle\\\\Cloudinary\\\\Api has an unused parameter \\$cloudinary\\.$#"
+			count: 1
+			path: ../src/Cloudinary/Api.php
+
+		-
+			message: "#^Constructor of class Speicher210\\\\CloudinaryBundle\\\\Cloudinary\\\\Uploader has an unused parameter \\$cloudinary\\.$#"
+			count: 1
+			path: ../src/Cloudinary/Uploader.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$prefix of method Cloudinary\\\\Api\\:\\:delete_resources_by_prefix\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$public_ids of method Cloudinary\\\\Api\\:\\:delete_resources\\(\\) expects array\\|string, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 2
+			path: ../src/Command/DeleteCommand.php
+
+		-
+			message: "#^Cannot access offset 'bytes' on mixed\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Cannot access offset 'format' on mixed\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Cannot access offset 'id' on mixed\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Cannot access offset 'transformation' on mixed\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Cannot access offset 'url' on mixed\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$bytes of method Speicher210\\\\CloudinaryBundle\\\\Command\\\\InfoCommand\\:\\:formatSize\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$public_id of method Cloudinary\\\\Api\\:\\:resource\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$derivedResources of method Speicher210\\\\CloudinaryBundle\\\\Command\\\\InfoCommand\\:\\:renderDerivedResources\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/InfoCommand.php
+
+		-
+			message: "#^Call to function assert\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Dynamic call to static method Cloudinary\\\\Uploader\\:\\:upload\\(\\)\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^In method \"Speicher210\\\\CloudinaryBundle\\\\Command\\\\UploadCommand\\:\\:execute\", caught \"Throwable\" must be rethrown\\. Either catch a more specific exception or add a \"throw\" clause in the \"catch\" block to propagate the exception\\. More info\\: http\\://bit\\.ly/failloud$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Instanceof between Symfony\\\\Component\\\\Finder\\\\SplFileInfo and Symfony\\\\Component\\\\Finder\\\\SplFileInfo will always evaluate to true\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$dirs of method Symfony\\\\Component\\\\Finder\\\\Finder\\:\\:in\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$patterns of method Symfony\\\\Component\\\\Finder\\\\Finder\\:\\:name\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: ../src/Command/UploadCommand.php
+
+		-
+			message: "#^Method Speicher210\\\\CloudinaryBundle\\\\DependencyInjection\\\\Speicher210CloudinaryExtension\\:\\:loadInternal\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../src/DependencyInjection/Speicher210CloudinaryExtension.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'Cloudinary' and Speicher210\\\\CloudinaryBundle\\\\Cloudinary\\\\Cloudinary will always evaluate to true\\.$#"
+			count: 1
+			path: ../tests/DependencyInjection/AbstractSpeicher210CloudinaryExtensionTestCase.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'Cloudinary\\\\\\\\Api' and Speicher210\\\\CloudinaryBundle\\\\Cloudinary\\\\Api will always evaluate to true\\.$#"
+			count: 1
+			path: ../tests/DependencyInjection/AbstractSpeicher210CloudinaryExtensionTestCase.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) with 'Cloudinary\\\\\\\\Uploader' and Speicher210\\\\CloudinaryBundle\\\\Cloudinary\\\\Uploader will always evaluate to true\\.$#"
+			count: 1
+			path: ../tests/DependencyInjection/AbstractSpeicher210CloudinaryExtensionTestCase.php

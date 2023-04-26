@@ -34,10 +34,7 @@ class UploadCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('sp210:cloudinary:upload')

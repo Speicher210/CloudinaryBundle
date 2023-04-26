@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+  <file src="../src/Command/InfoCommand.php">
+    <InvalidArrayOffset>
+      <code>$pre[$exp - 1]</code>
+    </InvalidArrayOffset>
+  </file>
+  <file src="../src/Command/UploadCommand.php">
+    <RedundantConditionGivenDocblockType>
+      <code>assert($file instanceof SplFileInfo)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="../src/DependencyInjection/Configuration.php">
+    <UndefinedMethod>
+      <code>children</code>
+    </UndefinedMethod>
+  </file>
+  <file src="../src/DependencyInjection/Speicher210CloudinaryExtension.php">
+    <ParamNameMismatch>
+      <code>$config</code>
+    </ParamNameMismatch>
+  </file>
+  <file src="../tests/DependencyInjection/Compiler/RemoveTwigExtensionPassTest.php">
+    <PossiblyUndefinedMethod>
+      <code>expects</code>
+      <code>expects</code>
+      <code>expects</code>
+      <code>expects</code>
+    </PossiblyUndefinedMethod>
+  </file>
+</files>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<psalm
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config ../vendor/vimeo/psalm/config.xsd"
+        errorBaseline="psalm.baseline.xml"
+        reportMixedIssues="false"
+        findUnusedBaselineEntry="false"
+        findUnusedCode="false"
+        errorLevel="1"
+>
+    <projectFiles>
+        <directory name="../src"/>
+        <directory name="../tests"/>
+        <ignoreFiles>
+            <directory name="../vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <MixedArgument errorLevel="suppress">
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </MixedArgument>
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </InternalMethod>
+        <MixedArrayAccess>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </MixedArrayAccess>
+        <MixedInferredReturnType>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </MixedInferredReturnType>
+        <MixedAssignment>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </MixedAssignment>
+        <PossiblyInvalidArgument>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </PossiblyInvalidArgument>
+        <PossiblyNullReference>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </PossiblyNullReference>
+        <PossiblyNullArgument>
+            <errorLevel type="suppress">
+                <directory name="../tests"/>
+            </errorLevel>
+        </PossiblyNullArgument>
+    </issueHandlers>
+
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+</psalm>

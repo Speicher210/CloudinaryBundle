@@ -34,10 +34,7 @@ class DeleteCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('sp210:cloudinary:delete')
@@ -63,7 +60,7 @@ class DeleteCommand extends Command
         $question = new ConfirmationQuestion(
             '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]',
         );
-        if (! $helper->ask($input, $output, $question)) {
+        if ($helper->ask($input, $output, $question) !== true) {
             return Command::SUCCESS;
         }
 
