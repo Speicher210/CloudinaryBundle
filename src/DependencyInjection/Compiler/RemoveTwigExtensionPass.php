@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -11,12 +13,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class RemoveTwigExtensionPass implements CompilerPassInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('twig')) {
-            $container->removeDefinition('twig.extension.cloudinary');
+        if ($container->hasDefinition('twig')) {
+            return;
         }
+
+        $container->removeDefinition('twig.extension.cloudinary');
     }
 }

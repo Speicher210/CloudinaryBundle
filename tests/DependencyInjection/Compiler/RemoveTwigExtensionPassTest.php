@@ -1,27 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection\Compiler;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Speicher210\CloudinaryBundle\DependencyInjection\Compiler\RemoveTwigExtensionPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class RemoveTwigExtensionPassTest extends TestCase
 {
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|ContainerBuilder
-     */
+    /** @var MockObject|ContainerBuilder|(ContainerBuilder&MockObject) */
     private $container;
 
-    /**
-     * @var RemoveTwigExtensionPass
-     */
-    private $compilerPass;
+    private RemoveTwigExtensionPass $compilerPass;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->container = $this->getMockBuilder(ContainerBuilder::class)
             ->setMethods(['hasDefinition', 'removeDefinition'])
@@ -30,7 +25,7 @@ class RemoveTwigExtensionPassTest extends TestCase
         $this->compilerPass = new RemoveTwigExtensionPass();
     }
 
-    public function testProcessWithTwig()
+    public function testProcessWithTwig(): void
     {
         $this->container
             ->expects($this->once())
@@ -46,7 +41,7 @@ class RemoveTwigExtensionPassTest extends TestCase
         $this->compilerPass->process($this->container);
     }
 
-    public function testProcessWithoutTwig()
+    public function testProcessWithoutTwig(): void
     {
         $this->container
             ->expects($this->once())

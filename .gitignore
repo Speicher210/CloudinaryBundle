@@ -1,5 +1,15 @@
+# phpstorm project files
 .idea/
-vendor/
-build/
+# vs code project files
+.vscode
+
+# composer vendor dir
+/vendor/
+
+# build cache
+/config/.phpcs-cache
+/config/.phpunit.cache
+
+# user specific
 composer.lock
-.phpunit.result.cache
+phpunit.xml

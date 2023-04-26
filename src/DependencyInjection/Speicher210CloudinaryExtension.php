@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 class Speicher210CloudinaryExtension extends ConfigurableExtension
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function loadInternal(array $config, ContainerBuilder $container)
     {

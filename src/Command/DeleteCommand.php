@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Command;
 
 use Cloudinary\Api\Response;
@@ -12,6 +14,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
+use function assert;
+use function sprintf;
+
 /**
  * Command to remove resources from Cloudinary API.
  */
@@ -19,10 +24,8 @@ class DeleteCommand extends Command
 {
     /**
      * Cloudinary API.
-     *
-     * @var Api
      */
-    private $api;
+    private Api $api;
 
     public function __construct(Api $api)
     {
@@ -32,7 +35,7 @@ class DeleteCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function configure()
     {
@@ -43,27 +46,27 @@ class DeleteCommand extends Command
                 'prefix',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The prefix for the resources to remove.'
+                'The prefix for the resources to remove.',
             )
             ->addOption(
                 'resource',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Remove one resource by public ID.'
+                'Remove one resource by public ID.',
             );
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
+        assert($helper instanceof QuestionHelper);
         $question = new ConfirmationQuestion(
-            '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]'
+            '<question>Are you sure you want to remove all resources based on your criteria?</question> [Y]',
         );
-        if (!$helper->ask($input, $output, $question)) {
+        if (! $helper->ask($input, $output, $question)) {
             return;
         }
 
@@ -71,9 +74,11 @@ class DeleteCommand extends Command
             $this->removeByPrefix($input, $output);
         }
 
-        if ($input->getOption('resource')) {
-            $this->removeResource($input, $output);
+        if (! $input->getOption('resource')) {
+            return;
         }
+
+        $this->removeResource($input, $output);
     }
 
     /**
@@ -82,11 +87,11 @@ class DeleteCommand extends Command
      * @param InputInterface  $input  Console input.
      * @param OutputInterface $output Console output.
      */
-    private function removeByPrefix(InputInterface $input, OutputInterface $output)
+    private function removeByPrefix(InputInterface $input, OutputInterface $output): void
     {
         $prefix = $input->getOption('prefix');
         $output->writeln(
-            sprintf('<comment>Removing all resources from <info>%s</info></comment>', $prefix)
+            sprintf('<comment>Removing all resources from <info>%s</info></comment>', $prefix),
         );
 
         $response = $this->api->delete_resources_by_prefix($prefix);
@@ -99,11 +104,11 @@ class DeleteCommand extends Command
      * @param InputInterface  $input  Console input.
      * @param OutputInterface $output Console output.
      */
-    private function removeResource(InputInterface $input, OutputInterface $output)
+    private function removeResource(InputInterface $input, OutputInterface $output): void
     {
         $resource = $input->getOption('resource');
         $output->writeln(
-            sprintf('<comment>Removing resource <info>%s</info></comment>', $resource)
+            sprintf('<comment>Removing resource <info>%s</info></comment>', $resource),
         );
 
         $response = $this->api->delete_resources($resource);
@@ -117,7 +122,7 @@ class DeleteCommand extends Command
      * @param string          $part     The part of the response to output.
      * @param OutputInterface $output   The console output.
      */
-    private function outputApiResponse(Response $response, $part, OutputInterface $output)
+    private function outputApiResponse(Response $response, string $part, OutputInterface $output): void
     {
         $table = new Table($output);
         $table->setHeaders(['Resource', 'Status']);

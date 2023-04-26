@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
@@ -12,15 +14,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
 {
-    /**
-     * @var ContainerBuilder
-     */
-    private $container;
+    private ContainerBuilder $container;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($extension = new Speicher210CloudinaryExtension());
@@ -30,12 +26,12 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
     /**
      * Loads a configuration.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
-     * @param string $configuration The configuration.
+     * @param ContainerBuilder $container     The container.
+     * @param string           $configuration The configuration.
      */
-    abstract protected function loadConfiguration(ContainerBuilder $container, $configuration);
+    abstract protected function loadConfiguration(ContainerBuilder $container, string $configuration): void;
 
-    public function testURLConfigurationOverwritesParameters()
+    public function testURLConfigurationOverwritesParameters(): void
     {
         $this->loadConfiguration($this->container, 'with_url');
         $this->container->compile();
@@ -46,7 +42,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
         $this->assertDefaultConfig();
     }
 
-    public function testCloudinaryService()
+    public function testCloudinaryService(): void
     {
         $this->loadConfiguration($this->container, 'default');
         $this->container->compile();
@@ -59,7 +55,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
         $this->assertDefaultConfig();
     }
 
-    public function testApiService()
+    public function testApiService(): void
     {
         $this->loadConfiguration($this->container, 'default');
         $this->container->compile();
@@ -72,7 +68,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
         $this->assertDefaultConfig();
     }
 
-    public function testUploaderService()
+    public function testUploaderService(): void
     {
         $this->loadConfiguration($this->container, 'default');
         $this->container->compile();
@@ -85,7 +81,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
         $this->assertDefaultConfig();
     }
 
-    public function testTwigExtensionService()
+    public function testTwigExtensionService(): void
     {
         $this->loadConfiguration($this->container, 'default');
         $this->container->compile();
@@ -94,7 +90,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
 
         static::assertInstanceOf(
             CloudinaryExtension::class,
-            $this->container->get($service)
+            $this->container->get($service),
         );
 
         static::assertTrue($this->container->getDefinition($service)->hasTag('twig.extension'));
@@ -104,7 +100,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
     /**
      * Asserts that the default configuration has been populated.
      */
-    private function assertDefaultConfig()
+    private function assertDefaultConfig(): void
     {
         static::assertSame(
             [
@@ -112,7 +108,7 @@ abstract class AbstractSpeicher210CloudinaryExtensionTest extends TestCase
                 'api_key' => 'key',
                 'api_secret' => 'secret',
             ],
-            \Cloudinary::config()
+            \Cloudinary::config(),
         );
     }
 }

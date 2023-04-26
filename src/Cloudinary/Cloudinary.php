@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Speicher210\CloudinaryBundle\Cloudinary;
 
 /**
@@ -8,7 +10,7 @@ namespace Speicher210\CloudinaryBundle\Cloudinary;
 class Cloudinary extends \Cloudinary
 {
     /**
-     * @param array $config The cloudinary configurations.
+     * @param array<mixed> $config The cloudinary configurations.
      */
     public function __construct(array $config)
     {
