@@ -8,5 +8,8 @@ use InvalidArgumentException;
 
 class InvalidCloudinaryUrlException extends InvalidArgumentException
 {
-    protected string $message = 'Cloudinary URL must be in the form: cloudinary://api_key:api_secret@cloud_name';
+    public function __construct()
+    {
+        parent::__construct('Cloudinary URL must be in the form: cloudinary://api_key:api_secret@cloud_name');
+    }
 }

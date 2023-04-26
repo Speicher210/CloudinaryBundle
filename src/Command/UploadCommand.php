@@ -59,10 +59,7 @@ class UploadCommand extends Command
             );
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $files  = Finder::create()->files()->in($input->getArgument('directory'));
         $prefix = $input->getOption('prefix');
@@ -83,6 +80,8 @@ class UploadCommand extends Command
                 );
             }
         }
+
+        return Command::SUCCESS;
     }
 
     /**

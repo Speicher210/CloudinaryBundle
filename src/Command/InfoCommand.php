@@ -48,21 +48,20 @@ class InfoCommand extends Command
             ->addArgument('public_id', InputArgument::REQUIRED, 'The public ID of the resource.');
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $response = $this->api->resource($input->getArgument('public_id'));
 
         $this->renderProperties($output, $response);
 
         if ($output->getVerbosity() < OutputInterface::VERBOSITY_VERBOSE) {
-            return;
+            return Command::SUCCESS;
         }
 
         $output->writeln(PHP_EOL);
         $this->renderDerivedResources($output, $response['derived']);
+
+        return Command::SUCCESS;
     }
 
     /**
