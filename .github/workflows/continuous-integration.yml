@@ -2,9 +2,9 @@ name: "Continuous Integration"
 
 on:
   push:
-    branches: [ 0.x ]
+    branches: [ 1.x ]
   pull_request:
-    branches: [ 0.x ]
+    branches: [ 1.x ]
 
 jobs:
   build:
@@ -16,8 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
         dependencies:
@@ -26,35 +24,12 @@ jobs:
           - ""
         include:
           # Test against lowest dependencies
-          - php-version: "7.4"
-            dependencies: "lowest"
-          - php-version: "8.0"
-            dependencies: "lowest"
           - php-version: "8.1"
             dependencies: "lowest"
           - php-version: "8.2"
             dependencies: "lowest"
 
-          # Test against latest Symfony 4.4
-          - symfony-require: "4.4.*"
-            php-version: "7.4"
-            dependencies: "highest"
-          - symfony-require: "4.4.*"
-            php-version: "8.0"
-            dependencies: "highest"
-          - symfony-require: "4.4.*"
-            php-version: "8.1"
-            dependencies: "highest"
-          - php-version: "8.2"
-            dependencies: "highest"
-
           # Test against latest Symfony 5.4
-          - symfony-require: "5.4.*"
-            php-version: "7.4"
-            dependencies: "highest"
-          - symfony-require: "5.4.*"
-            php-version: "8.0"
-            dependencies: "highest"
           - symfony-require: "5.4.*"
             php-version: "8.1"
             dependencies: "highest"
@@ -63,10 +38,6 @@ jobs:
             dependencies: "highest"
 
           # Test against highest dependencies
-          - php-version: "7.4"
-            dependencies: "highest"
-          - php-version: "8.0"
-            dependencies: "highest"
           - php-version: "8.1"
             dependencies: "highest"
           - php-version: "8.2"

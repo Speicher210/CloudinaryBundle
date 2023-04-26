@@ -17,19 +17,19 @@
   ],
   "homepage": "https://github.com/Speicher210/CloudinaryBundle",
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "~8.1.0 || ~8.2.0",
     "cloudinary/cloudinary_php": "^1.20.2",
-    "symfony/console": "^4.4 || ^5.4 || ^6.0",
-    "symfony/finder": "^4.4 || ^5.4 || ^6.0",
-    "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.0",
-    "symfony/yaml": "^4.4 || ^5.4 || ^6.0"
+    "symfony/console": "^5.4 || ^6.0",
+    "symfony/finder": "^5.4 || ^6.0",
+    "symfony/framework-bundle": "^5.4 || ^6.0",
+    "symfony/yaml": "^5.4 || ^6.0"
   },
   "require-dev": {
     "doctrine/coding-standard": "^12.0",
     "ergebnis/composer-normalize": "^2.28.3",
     "roave/security-advisories": "dev-latest",
     "symfony/phpunit-bridge": "^6.0",
-    "twig/twig": "^1.44 || ^2.0 || ^3.0"
+    "twig/twig": "^2.0 || ^3.0"
   },
   "suggest": {
     "twig/twig": "Allow to use the cloudinary_url function/filter"
