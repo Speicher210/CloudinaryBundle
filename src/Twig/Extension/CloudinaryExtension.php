@@ -18,12 +18,17 @@ final class CloudinaryExtension extends AbstractExtension
 {
     private Cloudinary $cloudinary;
 
+    /** @var array<mixed> */
+    private array $defaultConfiguration;
+
     /**
-     * @param Cloudinary $cloudinary The cloudinary library.
+     * @param Cloudinary   $cloudinary           The cloudinary library.
+     * @param array<mixed> $defaultConfiguration
      */
-    public function __construct(Cloudinary $cloudinary)
+    public function __construct(Cloudinary $cloudinary, array $defaultConfiguration = ['analytics' => false])
     {
-        $this->cloudinary = $cloudinary;
+        $this->cloudinary           = $cloudinary;
+        $this->defaultConfiguration = $defaultConfiguration;
     }
 
     /**
@@ -62,7 +67,7 @@ final class CloudinaryExtension extends AbstractExtension
     {
         return (string) $this->cloudinary
             ->image($id)
-            ->toUrl(ImageTransformation::fromParams($options));
+            ->toUrl(ImageTransformation::fromParams($this->options($options)));
     }
 
     /**
@@ -73,7 +78,7 @@ final class CloudinaryExtension extends AbstractExtension
      */
     public function getImageTag(string $id, array $options = []): string
     {
-        $imageTag = new ImageTag($id, Configuration::fromParams($options));
+        $imageTag = new ImageTag($id, Configuration::fromParams($this->options($options)));
 
         return $imageTag->toTag();
     }
@@ -86,7 +91,7 @@ final class CloudinaryExtension extends AbstractExtension
      */
     public function getPictureTag(string $id, array $options = []): string
     {
-        $videoTag = new PictureTag($id, [], Configuration::fromParams($options));
+        $videoTag = new PictureTag($id, [], Configuration::fromParams($this->options($options)));
 
         return $videoTag->toTag();
     }
@@ -99,8 +104,18 @@ final class CloudinaryExtension extends AbstractExtension
      */
     public function getVideoTag(string $id, array $options = []): string
     {
-        $videoTag = new VideoTag($id, null, Configuration::fromParams($options));
+        $videoTag = new VideoTag($id, null, Configuration::fromParams($this->options($options)));
 
         return $videoTag->toTag();
+    }
+
+    /**
+     * @param array<mixed> $options
+     *
+     * @return array<mixed>
+     */
+    private function options(array $options): array
+    {
+        return [...$this->defaultConfiguration, ...$options];
     }
 }
