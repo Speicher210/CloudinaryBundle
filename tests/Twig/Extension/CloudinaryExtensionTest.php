@@ -19,7 +19,7 @@ final class CloudinaryExtensionTest extends TestCase
 
     protected function setUp(): void
     {
-        $cloudinary = new Cloudinary(['cloud_name' => 'test']);
+        $cloudinary = new Cloudinary(['cloud_name' => 'test', 'analytics' => false]);
         $extension  = new CloudinaryExtension($cloudinary);
 
         $this->twig = new Environment(new FilesystemLoader());
@@ -31,7 +31,7 @@ final class CloudinaryExtensionTest extends TestCase
         $template = $this->twig->createTemplate('{{ cloudinary_url(url) }}');
 
         self::assertSame(
-            'https://res.cloudinary.com/test/image/upload/id?_a=AAFIKDQ',
+            'https://res.cloudinary.com/test/image/upload/id',
             $template->render(['url' => 'id']),
         );
     }
@@ -41,7 +41,7 @@ final class CloudinaryExtensionTest extends TestCase
         $template = $this->twig->createTemplate('{{ url | cloudinary_url }}');
 
         self::assertSame(
-            'https://res.cloudinary.com/test/image/upload/id?_a=AAFIKDQ',
+            'https://res.cloudinary.com/test/image/upload/id',
             $template->render(['url' => 'id']),
         );
     }
@@ -51,7 +51,7 @@ final class CloudinaryExtensionTest extends TestCase
         $template = $this->twig->createTemplate('{{ cloudinary_image_tag(url) }}');
 
         self::assertSame(
-            '<img src="https://res.cloudinary.com//image/upload/id?_a=AAFIKDQ">',
+            '<img src="https://res.cloudinary.com//image/upload/id">',
             $template->render(['url' => 'id']),
         );
     }
@@ -61,7 +61,7 @@ final class CloudinaryExtensionTest extends TestCase
         $template = $this->twig->createTemplate('{{ url | cloudinary_image_tag }}');
 
         self::assertSame(
-            '<img src="https://res.cloudinary.com//image/upload/id?_a=AAFIKDQ">',
+            '<img src="https://res.cloudinary.com//image/upload/id">',
             $template->render(['url' => 'id']),
         );
     }
@@ -73,7 +73,7 @@ final class CloudinaryExtensionTest extends TestCase
         self::assertSame(
             <<<'HTML'
             <picture>
-            <img src="https://res.cloudinary.com//image/upload/id?_a=AAFIKDQ">
+            <img src="https://res.cloudinary.com//image/upload/id">
             </picture>
             HTML,
             $template->render(['url' => 'id']),
@@ -87,7 +87,7 @@ final class CloudinaryExtensionTest extends TestCase
         self::assertSame(
             <<<'HTML'
             <picture>
-            <img src="https://res.cloudinary.com//image/upload/id?_a=AAFIKDQ">
+            <img src="https://res.cloudinary.com//image/upload/id">
             </picture>
             HTML,
             $template->render(['url' => 'id']),
@@ -100,11 +100,11 @@ final class CloudinaryExtensionTest extends TestCase
 
         self::assertSame(
             <<<'HTML'
-            <video poster="https://res.cloudinary.com//video/upload/id.jpg?_a=AAFIKDQ">
-            <source src="https://res.cloudinary.com//video/upload/vc_h265/id.mp4?_a=AAFIKDQ" type="video/mp4; codecs=hev1">
-            <source src="https://res.cloudinary.com//video/upload/vc_vp9/id.webm?_a=AAFIKDQ" type="video/webm; codecs=vp9">
-            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.mp4?_a=AAFIKDQ" type="video/mp4">
-            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.webm?_a=AAFIKDQ" type="video/webm">
+            <video poster="https://res.cloudinary.com//video/upload/id.jpg">
+            <source src="https://res.cloudinary.com//video/upload/vc_h265/id.mp4" type="video/mp4; codecs=hev1">
+            <source src="https://res.cloudinary.com//video/upload/vc_vp9/id.webm" type="video/webm; codecs=vp9">
+            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.webm" type="video/webm">
             </video>
             HTML,
             $template->render(['url' => 'id']),
@@ -117,11 +117,11 @@ final class CloudinaryExtensionTest extends TestCase
 
         self::assertSame(
             <<<'HTML'
-            <video poster="https://res.cloudinary.com//video/upload/id.jpg?_a=AAFIKDQ">
-            <source src="https://res.cloudinary.com//video/upload/vc_h265/id.mp4?_a=AAFIKDQ" type="video/mp4; codecs=hev1">
-            <source src="https://res.cloudinary.com//video/upload/vc_vp9/id.webm?_a=AAFIKDQ" type="video/webm; codecs=vp9">
-            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.mp4?_a=AAFIKDQ" type="video/mp4">
-            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.webm?_a=AAFIKDQ" type="video/webm">
+            <video poster="https://res.cloudinary.com//video/upload/id.jpg">
+            <source src="https://res.cloudinary.com//video/upload/vc_h265/id.mp4" type="video/mp4; codecs=hev1">
+            <source src="https://res.cloudinary.com//video/upload/vc_vp9/id.webm" type="video/webm; codecs=vp9">
+            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com//video/upload/vc_auto/id.webm" type="video/webm">
             </video>
             HTML,
             $template->render(['url' => 'id']),

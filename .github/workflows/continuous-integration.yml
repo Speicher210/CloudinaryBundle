@@ -34,13 +34,18 @@ jobs:
             dependencies: "lowest"
           - php-version: "8.2"
             dependencies: "lowest"
+          - php-version: "8.3"
+            dependencies: "lowest"
 
-          # Test against latest Symfony 5.4
-          - symfony-require: "5.4.*"
+          # Test against latest Symfony 6.4
+          - symfony-require: "6.4.*"
             php-version: "8.1"
             dependencies: "highest"
-          - symfony-require: "5.4.*"
+          - symfony-require: "6.4.*"
             php-version: "8.2"
+            dependencies: "highest"
+          - symfony-require: "6.4.*"
+            php-version: "8.3"
             dependencies: "highest"
 
           # Test against highest dependencies
@@ -48,10 +53,12 @@ jobs:
             dependencies: "highest"
           - php-version: "8.2"
             dependencies: "highest"
+          - php-version: "8.3"
+            dependencies: "highest"
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
